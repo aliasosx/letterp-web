@@ -1,7 +1,6 @@
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CommentStmt } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -15,13 +14,19 @@ export class DataServiceService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'authorization': 'Bearer ' + this.token
+      'authorization': 'Bearer ' + localStorage.getItem('abcd')
     })
   };
   getCompanyInfo(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.get(this.url + 'companyinfo', this.httpOptions).subscribe(res => {
-        console.log(res);
+        resolve(res);
+      });
+    });
+  }
+  getUserInfomation(id): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url + 'users/' + id, this.httpOptions).subscribe(res => {
         resolve(res);
       });
     });
