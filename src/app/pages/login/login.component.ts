@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.auth.login(this.loginForm.get('username').value, this.loginForm.get('password').value).then(result => {
       if (result['token']) {
-        this.route.navigateByUrl('dashboard');
+        window.location.reload();
       }
     });
   }

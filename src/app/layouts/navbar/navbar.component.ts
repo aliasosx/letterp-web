@@ -41,11 +41,13 @@ export class NavbarComponent implements OnInit {
   }
   getUser() {
     this.dataService.getUserInfomation(this.id).then(res => {
-
-      console.log(this.id);
       this.menus = res.menu;
       this.username = res.username;
     });
+  }
+  logout() {
+    localStorage.clear();
+    window.location.reload();
   }
 
 }

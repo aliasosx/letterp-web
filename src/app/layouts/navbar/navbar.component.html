@@ -12,7 +12,13 @@
       </li>
     </ul>
   </div>
-  <div class="mr-sm-2">
-    {{ username }}
+  <div class="row mr-sm-2">
+    logged in as {{ username }}
+    <span>
+      <i class="material-icons icon-space" (click)="logout()">
+        exit_to_app
+      </i>
+    </span>
+
   </div>
 </nav>

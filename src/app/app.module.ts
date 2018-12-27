@@ -8,13 +8,19 @@ import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './layouts/navbar/navbar.component';
+import { FoodsComponent } from './pages/foods/foods.component';
+import { UsersComponent } from './pages/users/users.component';
+import { PosComponent } from './pages/pos/pos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    NavbarComponent
+    NavbarComponent,
+    FoodsComponent,
+    UsersComponent,
+    PosComponent
   ],
   imports: [
     BrowserModule,
