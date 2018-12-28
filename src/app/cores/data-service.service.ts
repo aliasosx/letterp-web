@@ -31,5 +31,51 @@ export class DataServiceService {
       });
     });
   }
+  getFoodTypes(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url + 'foodtypes', this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
+  getFoodMasters(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url + 'masterfoods', this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
+  getKitchen(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url + 'kitchens', this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
+  addFood(food): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.url + 'foods', food, this.httpOptions).subscribe(res => {
+        if (res) {
+          resolve(res);
+        } else {
+          reject(res);
+        }
+      });
+    });
+  }
+  getFoods(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url + 'foods', this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
+  deleteFood(id): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.delete(this.url + 'foods/' + id, this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
 
 }

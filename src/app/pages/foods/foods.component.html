@@ -1,16 +1,155 @@
 <div class="row">
   <div class="col col-sm-8">
     <div class="card">
-      <div class="card-header">ລາຍການອາຫານທັງໝົດ <div class="float-sm-right">a</div>
+      <div class="card-header">
+
+        <div class="row">
+          <span class="icon-header">
+            <i class="material-icons">
+              fastfood
+            </i>
+          </span>
+          <div class="h5">ລາຍການອາຫານທັງໝົດ</div>
+        </div>
+        <div class="float-sm-right search-icon">
+          <i class="material-icons">
+            search
+          </i>
+        </div>
+
+
+
       </div>
       <div class="card-body">
-        <div class="row">
-          <div class="card col col-12 ">
-            <div class="card-body ">
-              <div class="form-group">
-                <label for="inputSearch">ຄົ້ນຫາ</label>
-                <input type="text" class="form-control" id="inputSearch" placeholder="ເຂົ້າຜັດ ...">
-              </div>
+        <div class="row ">
+          <div class="col-md-12">
+            <div class="table-container">
+              <table class="table">
+                <thead class="table__thead">
+                  <tr>
+                    <th class="table__th "><input id="selectAll" type="checkbox" class="table__select-row"></th>
+                    <th class="table__th">ລາຍການອາຫານ</th>
+                    <th class="table__th">ປະເພດ</th>
+                    <th class="table__th">ຕົ້ນທຶນ</th>
+                    <th class="table__th">ລາຄາຂາຍ</th>
+                    <th class="table__th">ຫ້ອງຄົວ</th>
+                    <th class="table__th"></th>
+                  </tr>
+                </thead>
+                <tbody class="table__tbody">
+                  <tr class="table-row table-row--chris" *ngFor="let food of foods ">
+                    <td class="table-row__td">
+                      <input id="" type="checkbox" class="table__select-row">
+                    </td>
+                    <td class="table-row__td">
+                      <div class="table-row__img" [ngStyle]="{'background-image': 'url(' + url + food.photo_path + ')','min-width': '100px'}"></div>
+                      <div class="table-row__info">
+                        <p class="table-row__name">{{ food.food_name }}</p>
+                      </div>
+                    </td>
+
+                    <td data-column="ປະເພດ" class="table-row__td">
+                      <p class="table-row__p-status status--green status">{{ food.food_type }}</p>
+                    </td>
+                    <td data-column="ຕົ້ນທຶນ" class="table-row__td">
+                      <div class="">
+                        <p class="table-row__policy ">{{ food.cost | number }}</p>
+                      </div>
+                    </td>
+                    <td data-column="ລາຄາຂາຍ" class="table-row__td">
+                      <div class="">
+                        <p class="table-row__policy ">{{ food.price | number }}</p>
+                      </div>
+                    </td>
+                    <td data-column="ຫ້ອງຄົວ" class="table-row__td">
+                      <p class="table-row__status status--green status">{{ food.kitchen_code }}</p>
+                    </td>
+                    <td class="table-row__td">
+
+                      <svg version="1.1" class="table-row__edit" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;"
+                        xml:space="preserve" data-toggle="tooltip" data-placement="bottom" title="Edit">
+                        <g>
+                          <g>
+                            <path d="M496.063,62.299l-46.396-46.4c-21.2-21.199-55.69-21.198-76.888,0l-18.16,18.161l123.284,123.294l18.16-18.161    C517.311,117.944,517.314,83.55,496.063,62.299z"
+                              style="fill: rgb(1, 185, 209);"></path>
+                          </g>
+                        </g>
+                        <g>
+                          <g>
+                            <path d="M22.012,376.747L0.251,494.268c-0.899,4.857,0.649,9.846,4.142,13.339c3.497,3.497,8.487,5.042,13.338,4.143    l117.512-21.763L22.012,376.747z"
+                              style="fill: rgb(1, 185, 209);"></path>
+                          </g>
+                        </g>
+                        <g>
+                          <g>
+                            <polygon points="333.407,55.274 38.198,350.506 161.482,473.799 456.691,178.568   " style="fill: rgb(1, 185, 209);"></polygon>
+                          </g>
+                        </g>
+                        <g></g>
+                        <g></g>
+                        <g></g>
+                        <g></g>
+                        <g></g>
+                        <g></g>
+                        <g></g>
+                        <g></g>
+                        <g></g>
+                        <g></g>
+                        <g></g>
+                        <g></g>
+                        <g></g>
+                        <g></g>
+                        <g></g>
+                      </svg>
+
+                      <svg data-toggle="tooltip" data-placement="bottom" title="Delete" version="1.1" class="table-row__bin"
+                        (click)="deleteFood(food)" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                        <g>
+                          <g>
+                            <path d="M436,60h-90V45c0-24.813-20.187-45-45-45h-90c-24.813,0-45,20.187-45,45v15H76c-24.813,0-45,20.187-45,45v30    c0,8.284,6.716,15,15,15h16.183L88.57,470.945c0.003,0.043,0.007,0.086,0.011,0.129C90.703,494.406,109.97,512,133.396,512    h245.207c23.427,0,42.693-17.594,44.815-40.926c0.004-0.043,0.008-0.086,0.011-0.129L449.817,150H466c8.284,0,15-6.716,15-15v-30    C481,80.187,460.813,60,436,60z M196,45c0-8.271,6.729-15,15-15h90c8.271,0,15,6.729,15,15v15H196V45z M393.537,468.408    c-0.729,7.753-7.142,13.592-14.934,13.592H133.396c-7.792,0-14.204-5.839-14.934-13.592L92.284,150h327.432L393.537,468.408z     M451,120h-15H76H61v-15c0-8.271,6.729-15,15-15h105h150h105c8.271,0,15,6.729,15,15V120z"
+                              style="fill: rgb(158, 171, 180);"></path>
+                          </g>
+                        </g>
+                        <g>
+                          <g>
+                            <path d="M256,180c-8.284,0-15,6.716-15,15v212c0,8.284,6.716,15,15,15s15-6.716,15-15V195C271,186.716,264.284,180,256,180z"
+                              style="fill: rgb(158, 171, 180);"></path>
+                          </g>
+                        </g>
+                        <g>
+                          <g>
+                            <path d="M346,180c-8.284,0-15,6.716-15,15v212c0,8.284,6.716,15,15,15s15-6.716,15-15V195C361,186.716,354.284,180,346,180z"
+                              style="fill: rgb(158, 171, 180);"></path>
+                          </g>
+                        </g>
+                        <g>
+                          <g>
+                            <path d="M166,180c-8.284,0-15,6.716-15,15v212c0,8.284,6.716,15,15,15s15-6.716,15-15V195C181,186.716,174.284,180,166,180z"
+                              style="fill: rgb(158, 171, 180);"></path>
+                          </g>
+                        </g>
+                        <g></g>
+                        <g></g>
+                        <g></g>
+                        <g></g>
+                        <g></g>
+                        <g></g>
+                        <g></g>
+                        <g></g>
+                        <g></g>
+                        <g></g>
+                        <g></g>
+                        <g></g>
+                        <g></g>
+                        <g></g>
+                        <g></g>
+                      </svg>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
@@ -19,9 +158,120 @@
   </div>
   <div class="col col-sm-4">
     <div class="card">
-      <div class="card-header">ເພື່ມລາຍການອາຫານ</div>
+      <div class="card-header">
+        <div class="row">
+          <span class="icon-header">
+            <i class="material-icons">
+              add
+            </i>
+          </span>
+          <div class="h5">ເພິ່ມລາຍການອາຫານ</div>
+        </div>
+      </div>
       <div class="card-body">
-        Hi
+        <form [formGroup]="foodForm">
+          <div class="form-group">
+            <label for="txt_food_name">ຊື່ອາຫານ</label>
+            <div class="row food_type-div">
+              <input type="text" required class="form-control col col-md-10" formControlName="food_name" id="txt_food_name"
+                placeholder="ຊື່ອາຫານ">
+              <span class="float-mr col col-md-2 ">
+                <i class="material-icons add-icon ">
+                  add_a_photo
+                </i>
+              </span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="masterFoodSelect">ປະເພດ</label>
+            <select id="masterFoodSelect" class="form-control" formControlName="food_master" (change)="masterFoodOption($event.target.value)">
+              <option value="-1" disabled>...</option>
+              <option value="0">ອາຫານ ຫຼັກ</option>
+              <option value="1">ອາຫານ ຍ່ອຍ</option>
+              <option value="2">ອາຫານ ທົ່ວໄປ</option>
+            </select>
+          </div>
+
+          <div [ngClass]="showParentFoodStyle">
+            <label for="parentsFoodSelect">ອາຫານຫຼັກ</label>
+            <select id="parentsFoodSelect" class="form-control" formControlName="food_parents">
+              <option value="-1" disabled>...</option>
+              <option value="{{ mfood._id }}" *ngFor="let mfood of masterFoods">{{ mfood.food_name }}</option>
+
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="foodtypeselect">ປະເພດອາຫານ</label>
+            <div class="row food_type-div">
+              <select id="foodtypeselect" class="form-control col col-md-10" formControlName="food_type">
+                <option value="-1" disabled>...</option>
+                <option value="{{ ft.food_type_code }}" *ngFor="let ft of foodtypes">{{ ft.food_type_name }}</option>
+              </select>
+              <span class="float-mr col col-md-2 ">
+                <i class="material-icons add-icon ">
+                  add_circle
+                </i>
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="txt_cost">ຕົ້ນທຶນ</label>
+            <input type="number" [readOnly]="costAndPriceDisabled" formControlName="cost" required class="form-control"
+              id="txt_cost">
+          </div>
+          <div class="form-group">
+            <label for="txt_price">ລາຄາຂາຍ</label>
+            <input type="number" [readOnly]="costAndPriceDisabled" formControlName="price" required class="form-control "
+              id="txt_price">
+          </div>
+
+          <div class="form-group">
+            <label for="foodtypeselect">ຄົວ</label>
+            <div class="row food_type-div">
+              <select id="foodtypeselect" class="form-control col col-md-10" formControlName="kitchen_code">
+                <option value="-1" disabled>...</option>
+                <option value="{{ kt.kitchen_code }}" *ngFor="let kt of kitchens">{{ kt.kitchen_name }}</option>
+              </select>
+              <span class="float-mr col col-md-2 ">
+                <i class="material-icons add-icon ">
+                  add_circle
+                </i>
+              </span>
+            </div>
+          </div>
+          <div class="col col-md-12 text-right">
+            <button type="button" class="btn btn-primary float-mr addfood-btn" (click)="addFood()">ບັນທຶກ</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
