@@ -1,8 +1,8 @@
-import { async } from '@angular/core/testing';
+
 import { AuthServiceService } from 'src/app/cores/auth-service.service';
 import { Router } from '@angular/router';
 import { DataServiceService } from 'src/app/cores/data-service.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -22,6 +22,7 @@ export class FoodsComponent implements OnInit {
     this.getFoods();
 
   }
+
   token = localStorage.getItem('abcd');
   foodtypes: any;
   masterFoodOpt: boolean = true;
@@ -90,54 +91,56 @@ export class FoodsComponent implements OnInit {
     // master Food
     if (this.masterFoodOpt) {
       food = {
-        "food_master": 1,
-        "food_parents": 0,
+        "parents_food_id": 0,
         "cost": 0,
         "price": 0,
         "currcode": 418,
-        "is_enabled": 1,
-        "enable_child": 1,
+        "enabled": true,
+        "enabled_child_food": 1,
         "food_name": this.foodForm.get('food_name').value,
-        "food_type": this.foodForm.get('food_type').value,
-        "photo_path": "../../../assets/images/No_Image_Available.gif",
-        "kitchen_code": this.foodForm.get('kitchen_code').value,
-        "created_by": this.userInfo.username,
+        "foodtypeId": this.foodForm.get('food_type').value,
+        "photo": "../../../assets/images/No_Image_Available.gif",
+        "kitchenId": this.foodForm.get('kitchen_code').value,
+        "userId": 18,
       }
       // Slave food
     } else if (this.foodForm.get('food_master').value == 1) {
       food = {
-        "food_master": 0,
-        "food_parents": this.foodForm.get('food_parents').value,
+        "parents_food_id": this.foodForm.get('food_parents').value,
         "cost": this.foodForm.get('cost').value,
         "price": this.foodForm.get('price').value,
         "currcode": 418,
-        "is_enabled": 1,
-        "enable_child": 0,
+        "enabled": true,
+        "enabled_child_food": false,
         "food_name": this.foodForm.get('food_name').value,
-        "food_type": this.foodForm.get('food_type').value,
-        "photo_path": "../../../assets/images/No_Image_Available.gif",
-        "kitchen_code": this.foodForm.get('kitchen_code').value,
-        "created_by": this.userInfo.username,
+        "foodtypeId": this.foodForm.get('food_type').value,
+        "photo": "../../../assets/images/No_Image_Available.gif",
+        "kitchenId": this.foodForm.get('kitchen_code').value,
+        "userId": 18,
       }
     } else if (this.foodForm.get('food_master').value == 2) {
       food = {
-        "food_master": 0,
-        "food_parents": 0,
+        "parents_food_id": 0,
         "cost": this.foodForm.get('cost').value,
         "price": this.foodForm.get('price').value,
         "currcode": 418,
-        "is_enabled": 1,
-        "enable_child": 0,
+        "enabled": true,
+        "enabled_child_food": false,
         "food_name": this.foodForm.get('food_name').value,
-        "food_type": this.foodForm.get('food_type').value,
-        "photo_path": "../../../assets/images/No_Image_Available.gif",
-        "kitchen_code": this.foodForm.get('kitchen_code').value,
-        "created_by": this.userInfo.username,
+        "foodtypeId": this.foodForm.get('food_type').value,
+        "photo": "../../../assets/images/No_Image_Available.gif",
+        "kitchenId": this.foodForm.get('kitchen_code').value,
+        "userId": 18,
       }
     }
     let performAddFood = await this.dataService.addFood(food).then(res => {
-      this.addFood = res;
+      alert(res['status'] + ' reason ' + res['reason']);
+      if (res['status'] == 'success') {
+        this.foodForm.reset();
+      }
       this.getFoods();
+    }).catch((res) => {
+      alert(res['status'] + ' reason ' + res['reason']);
     });
 
   }
@@ -148,18 +151,22 @@ export class FoodsComponent implements OnInit {
     });
   }
   async getFoods() {
-    const foods = await this.dataService.getFoods().then(foods => this.foods = foods);
+    const f = await this.dataService.getFoodDetail().then(foods => this.foods = foods).catch((err) => { console.log(err) });
   }
 
   async deleteFood(food) {
-    if (food.food_master == 1) {
+    if (food.enabled_child_food == 1) {
       alert('ບໍ່ສາມາດດຳເນິນການໄດ້');
       return
     } else {
-      const deleteFood = await this.dataService.deleteFood(food._id).then(res => {
+      const deleteFood = await this.dataService.deleteFood(food.id).then(res => {
         alert(res.status);
         this.getFoods();
       });
     }
   }
+
+  openModal() {
+
+  };
 }

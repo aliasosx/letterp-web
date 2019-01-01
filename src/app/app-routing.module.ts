@@ -8,7 +8,7 @@ import { PosComponent } from './pages/pos/pos.component';
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'foods', component: FoodsComponent },
+  { path: 'food', component: FoodsComponent },
   { path: 'pos', component: PosComponent },
 
 ];

@@ -17,8 +17,6 @@
           </i>
         </div>
 
-
-
       </div>
       <div class="card-body">
         <div class="row ">
@@ -42,14 +40,14 @@
                       <input id="" type="checkbox" class="table__select-row">
                     </td>
                     <td class="table-row__td">
-                      <div class="table-row__img" [ngStyle]="{'background-image': 'url(' + url + food.photo_path + ')','min-width': '100px'}"></div>
+                      <div class="table-row__img" [ngStyle]="{'background-image': 'url('+ food.photo +')','min-width': '100px'}"></div>
                       <div class="table-row__info">
                         <p class="table-row__name">{{ food.food_name }}</p>
                       </div>
                     </td>
 
                     <td data-column="ປະເພດ" class="table-row__td">
-                      <p class="table-row__p-status status--green status">{{ food.food_type }}</p>
+                      <p class="table-row__p-status status--green status">{{ food.food_type_desc }}</p>
                     </td>
                     <td data-column="ຕົ້ນທຶນ" class="table-row__td">
                       <div class="">
@@ -196,7 +194,7 @@
             <label for="parentsFoodSelect">ອາຫານຫຼັກ</label>
             <select id="parentsFoodSelect" class="form-control" formControlName="food_parents">
               <option value="-1" disabled>...</option>
-              <option value="{{ mfood._id }}" *ngFor="let mfood of masterFoods">{{ mfood.food_name }}</option>
+              <option value="{{ mfood.id }}" *ngFor="let mfood of masterFoods">{{ mfood.food_name }}</option>
 
             </select>
           </div>
@@ -206,7 +204,7 @@
             <div class="row food_type-div">
               <select id="foodtypeselect" class="form-control col col-md-10" formControlName="food_type">
                 <option value="-1" disabled>...</option>
-                <option value="{{ ft.food_type_code }}" *ngFor="let ft of foodtypes">{{ ft.food_type_name }}</option>
+                <option value="{{ ft.id }}" *ngFor="let ft of foodtypes">{{ ft.food_type_desc_la }}</option>
               </select>
               <span class="float-mr col col-md-2 ">
                 <i class="material-icons add-icon ">
@@ -232,7 +230,7 @@
             <div class="row food_type-div">
               <select id="foodtypeselect" class="form-control col col-md-10" formControlName="kitchen_code">
                 <option value="-1" disabled>...</option>
-                <option value="{{ kt.kitchen_code }}" *ngFor="let kt of kitchens">{{ kt.kitchen_name }}</option>
+                <option value="{{ kt.id }}" *ngFor="let kt of kitchens">{{ kt.kitchen_name }}</option>
               </select>
               <span class="float-mr col col-md-2 ">
                 <i class="material-icons add-icon ">
@@ -252,12 +250,13 @@
 
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+<button type="button" class="btn btn-primary" (click)="openModal()">
   Launch demo modal
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" #modalAlert id="modalAlert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">

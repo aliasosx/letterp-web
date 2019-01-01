@@ -40,7 +40,7 @@ export class DataServiceService {
   }
   getFoodMasters(): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.get(this.url + 'masterfoods', this.httpOptions).subscribe(res => {
+      this.http.get(this.url + 'foodmaster', this.httpOptions).subscribe(res => {
         resolve(res);
       });
     });
@@ -66,6 +66,14 @@ export class DataServiceService {
   getFoods(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.get(this.url + 'foods', this.httpOptions).subscribe(res => {
+        console.log(res);
+        resolve(res);
+      });
+    });
+  }
+  getFoodDetail(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url + 'fooddetail', this.httpOptions).subscribe(res => {
         resolve(res);
       });
     });
@@ -77,5 +85,7 @@ export class DataServiceService {
       });
     });
   }
-
+  getMenuByUserId(id) {
+    return this.http.get(this.url + 'menubyuserid/' + id, this.httpOptions);
+  }
 }
