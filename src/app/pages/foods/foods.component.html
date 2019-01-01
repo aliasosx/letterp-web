@@ -207,7 +207,7 @@
                 <option value="{{ ft.id }}" *ngFor="let ft of foodtypes">{{ ft.food_type_desc_la }}</option>
               </select>
               <span class="float-mr col col-md-2 ">
-                <i class="material-icons add-icon ">
+                <i class="material-icons add-icon " (click)="openFoodType()">
                   add_circle
                 </i>
               </span>
@@ -233,7 +233,7 @@
                 <option value="{{ kt.id }}" *ngFor="let kt of kitchens">{{ kt.kitchen_name }}</option>
               </select>
               <span class="float-mr col col-md-2 ">
-                <i class="material-icons add-icon ">
+                <i class="material-icons add-icon " (click)="openKitchenDialog()">
                   add_circle
                 </i>
               </span>
@@ -243,34 +243,6 @@
             <button type="button" class="btn btn-primary float-mr addfood-btn" (click)="addFood()">ບັນທຶກ</button>
           </div>
         </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" (click)="openModal()">
-  Launch demo modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" #modalAlert id="modalAlert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>

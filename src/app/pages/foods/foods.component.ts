@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { DataServiceService } from 'src/app/cores/data-service.service';
 import { Component, OnInit, } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FoodtypeComponent } from 'src/app/dialogs/foodtype/foodtype.component';
+import { CommonDialogComponent } from 'src/app/dialogs/common-dialog/common-dialog.component';
 
 @Component({
   selector: 'app-foods',
@@ -12,7 +15,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class FoodsComponent implements OnInit {
   userInfo: any;
-  constructor(private dataService: DataServiceService, private route: Router, private auth: AuthServiceService) {
+  constructor(private dataService: DataServiceService, private route: Router, private auth: AuthServiceService, private modalService: NgbModal) {
     let token = localStorage.getItem('abcd');
     if (!token) { route.navigateByUrl('/') }
     this.getUserInfo();
@@ -166,7 +169,27 @@ export class FoodsComponent implements OnInit {
     }
   }
 
-  openModal() {
-
+  openFoodType() {
+    const modalRef = this.modalService.open(FoodtypeComponent,
+      {
+        centered: true,
+        size: 'lg'
+      }
+    );
+    modalRef.componentInstance.name = "Hello";
+    modalRef.result.then(() => {
+      this.getFoodTypes();
+    })
   };
+  openKitchenDialog() {
+    const modalRef = this.modalService.open(CommonDialogComponent,
+      {
+        centered: true,
+        size: 'lg'
+      });
+    modalRef.componentInstance.form_type = "kitchen";
+    modalRef.result.then(() => {
+      this.getKitchen();
+    });
+  }
 }

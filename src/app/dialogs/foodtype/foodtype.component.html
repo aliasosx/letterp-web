@@ -1,0 +1,26 @@
+<div class="modal-header">
+  <h4 class="modal-title">ປະເພດອາຫານ</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="foodTypeForm">
+    <div class="form-group">
+      <label for="foodTypeCode">ລະຫັດ ປະເພດອາຫານ</label>
+      <input type="text" formControlName="food_type" required class="form-control" tabindex="0" id="foodTypeCode">
+    </div>
+    <div class="form-group">
+      <label for="foodTypeNameEn">ຊື່ ປະເພດອາຫານ ພາສາອັງກິດ</label>
+      <input type="text" formControlName="food_type_desc" required class="form-control" tabindex="1" id="foodTypeNameEn">
+    </div>
+    <div class="form-group">
+      <label for="foodTypeNameLa">ຊື່ ປະເພດອາຫານ ພາສາ ລາວ</label>
+      <input type="text" formControlName="food_type_desc_la" required class="form-control" tabindex="2" id="foodTypeNameLa">
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="addFoodType()">ບັນທຶກ</button>
+</div>

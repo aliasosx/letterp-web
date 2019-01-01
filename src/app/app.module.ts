@@ -11,7 +11,9 @@ import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { FoodsComponent } from './pages/foods/foods.component';
 import { UsersComponent } from './pages/users/users.component';
 import { PosComponent } from './pages/pos/pos.component';
-
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { FoodtypeComponent } from './dialogs/foodtype/foodtype.component';
+import { CommonDialogComponent } from './dialogs/common-dialog/common-dialog.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { PosComponent } from './pages/pos/pos.component';
     NavbarComponent,
     FoodsComponent,
     UsersComponent,
-    PosComponent
+    PosComponent,
+    FoodtypeComponent,
+    CommonDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +33,12 @@ import { PosComponent } from './pages/pos/pos.component';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    NgbModalModule,
+
+  ],
+  entryComponents: [
+    FoodtypeComponent,
+    CommonDialogComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

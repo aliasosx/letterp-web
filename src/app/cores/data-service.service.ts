@@ -88,4 +88,25 @@ export class DataServiceService {
   getMenuByUserId(id) {
     return this.http.get(this.url + 'menubyuserid/' + id, this.httpOptions);
   }
+  createFoodType(foodType): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.url + 'foodtypes', foodType, this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
+  createKitchen(kitchen): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.url + 'foodtypes', kitchen, this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
+  getChefs(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url + 'chefs', this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
 }
