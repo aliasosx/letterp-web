@@ -39,13 +39,21 @@
         </div>
         <div class="card-body">
           <ul class="list-group">
-            <li *ngFor="let item of items" class="list-group-item">{{ item.food['food_name'] }} X {{ item.quantity }}
-              <div class="float-right">{{ item.food['price'] * item.quantity | number }} <span><i class="material-icons">
-                    remove_shopping_cart
-                  </i></span></div>
-            </li>
-
+            <div class="col">
+              <li *ngFor="let item of items" class="list-group-item">{{ item.food['food_name'] }} X {{ item.quantity }}
+                <div class="float-right">{{ item.food['price'] * item.quantity | number }} <span class="cart-remove-icon"
+                    (click)="removeCardItem(item.food['id'])"><img src="../../../assets/images/trash.svg"></span></div>
+              </li>
+            </div>
           </ul>
+
+        </div>
+        <div class="card-footer">
+          <div class="row">
+            <div class="col col-md-8 text-right">ຍອດລວມ : </div>
+            <div class="col col-md-4 text-right">{{ total |number }}</div>
+          </div>
+
         </div>
       </div>
 

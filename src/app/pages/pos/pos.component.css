@@ -37,3 +37,10 @@
   right: 3px;
   background-color: rgb(233, 130, 13);
 }
+.cart-remove-icon{
+  cursor: pointer;
+}
+.total-footer {
+  position: absolute;
+  bottom: 0;
+}
