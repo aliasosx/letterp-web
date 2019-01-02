@@ -23,7 +23,6 @@ export class FoodsComponent implements OnInit {
     this.getMasterFood();
     this.getKitchen();
     this.getFoods();
-
   }
 
   token = localStorage.getItem('abcd');
@@ -104,7 +103,7 @@ export class FoodsComponent implements OnInit {
         "foodtypeId": this.foodForm.get('food_type').value,
         "photo": "../../../assets/images/No_Image_Available.gif",
         "kitchenId": this.foodForm.get('kitchen_code').value,
-        "userId": 18,
+        "userId": this.userInfo.id,
       }
       // Slave food
     } else if (this.foodForm.get('food_master').value == 1) {
@@ -119,7 +118,7 @@ export class FoodsComponent implements OnInit {
         "foodtypeId": this.foodForm.get('food_type').value,
         "photo": "../../../assets/images/No_Image_Available.gif",
         "kitchenId": this.foodForm.get('kitchen_code').value,
-        "userId": 18,
+        "userId": this.userInfo.id,
       }
     } else if (this.foodForm.get('food_master').value == 2) {
       food = {
@@ -133,7 +132,7 @@ export class FoodsComponent implements OnInit {
         "foodtypeId": this.foodForm.get('food_type').value,
         "photo": "../../../assets/images/No_Image_Available.gif",
         "kitchenId": this.foodForm.get('kitchen_code').value,
-        "userId": 18,
+        "userId": this.userInfo.id,
       }
     }
     let performAddFood = await this.dataService.addFood(food).then(res => {
@@ -141,7 +140,7 @@ export class FoodsComponent implements OnInit {
       if (res['status'] == 'success') {
         this.foodForm.reset();
       }
-      this.getFoods();
+      this.loadAll();
     }).catch((res) => {
       alert(res['status'] + ' reason ' + res['reason']);
     });
@@ -150,6 +149,7 @@ export class FoodsComponent implements OnInit {
   async getUserInfo() {
     const user = await this.auth.tokenVerify(this.token).then(res => {
       this.userInfo = res;
+      console.log(res.id);
 
     });
   }
@@ -191,5 +191,12 @@ export class FoodsComponent implements OnInit {
     modalRef.result.then(() => {
       this.getKitchen();
     });
+  }
+  loadAll() {
+    this.getUserInfo();
+    this.getFoodTypes();
+    this.getMasterFood();
+    this.getKitchen();
+    this.getFoods();
   }
 }

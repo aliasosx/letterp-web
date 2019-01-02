@@ -21,6 +21,26 @@
         <option value="{{ chef.id }}" *ngFor="let chef of chefs">{{ chef.username }}</option>
       </select> </div>
   </form>
+  <!--
+  Food Form
+-->
+
+  <form [formGroup]="FoodInfo">
+    <div class="form-group">
+      <label for="foodTypeCode">ລະຫັດ ຫ້ອງຄົວ</label>
+      <input type="text" formControlName="kitchen_code" required class="form-control" tabindex="0" id="foodTypeCode">
+    </div>
+    <div class="form-group">
+      <label for="foodTypeNameEn">ຊື່ ຫ້ອງຄົວ</label>
+      <input type="text" formControlName="kitchen_name" required class="form-control" tabindex="1" id="foodTypeNameEn">
+    </div>
+    <div class="form-group">
+      <label for="foodTypeNameLa">ຜຸ້ຮັບຜີດຊອບ</label>
+      <select class="form-control" formControlName="userId">
+        <option value="" disabled>-------</option>
+        <option value="{{ chef.id }}" *ngFor="let chef of chefs">{{ chef.username }}</option>
+      </select> </div>
+  </form>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-outline-dark" (click)="addKitchen()">ບັນທຶກ</button>

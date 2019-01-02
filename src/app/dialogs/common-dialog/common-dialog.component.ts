@@ -14,10 +14,12 @@ export class CommonDialogComponent implements OnInit {
     this.getChefs();
   }
   @Input() form_type: any;
-  KitchenForm: FormGroup;
 
+  KitchenForm: FormGroup;
+  FoodInfo: FormGroup;
 
   chefs: any;
+
   ngOnInit() {
     // initialize kitchen form
     this.KitchenForm = new FormGroup({
@@ -25,7 +27,19 @@ export class CommonDialogComponent implements OnInit {
       'kitchen_name': new FormControl(),
       'userId': new FormControl()
     });
-
+    this.FoodInfo = new FormGroup({
+      "parents_food_id": new FormControl(),
+      "cost": new FormControl(),
+      "price": new FormControl(),
+      "currcode": new FormControl(),
+      "enabled": new FormControl(),
+      "enabled_child_food": new FormControl(),
+      "food_name": new FormControl(),
+      "foodtypeId": new FormControl(),
+      "photo": new FormControl(),
+      "kitchenId": new FormControl(),
+      "userId": new FormControl(),
+    });
   }
   async getChefs() {
     const c = await this.dataService.getChefs().then(chefs => this.chefs = chefs);

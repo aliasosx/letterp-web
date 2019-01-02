@@ -15,6 +15,7 @@ export class NavbarComponent implements OnInit {
     if (!token) { route.navigateByUrl('/') }
     this.auth.tokenVerify(token).then(authData => {
       this.authData = authData;
+      this.loadMenubyUserId();
     });
   }
   company_name: string;
@@ -28,7 +29,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
 
     this.getCompany();
-    this.loadMenubyUserId();
+    //this.loadMenubyUserId();
     //this.authData = this.dataService.getTokenverify().subscribe(console.log);
 
   }
@@ -44,7 +45,7 @@ export class NavbarComponent implements OnInit {
     window.location.reload();
   }
   loadMenubyUserId() {
-    this.menus_all = this.dataService.getMenuByUserId(18);
+    this.menus_all = this.dataService.getMenuByUserId(this.authData['id']);
   }
 
 }
