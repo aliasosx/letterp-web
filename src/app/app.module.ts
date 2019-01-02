@@ -25,7 +25,8 @@ import { CommonDialogComponent } from './dialogs/common-dialog/common-dialog.com
     UsersComponent,
     PosComponent,
     FoodtypeComponent,
-    CommonDialogComponent
+    CommonDialogComponent,
+
   ],
   imports: [
     BrowserModule,

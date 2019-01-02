@@ -1,0 +1,39 @@
+
+* {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif , 'phetsarath-ot';
+}
+.nav-link {
+  cursor: pointer;
+}
+.item-container {
+  margin-top: 5px;
+  padding: 0;
+  height: 83vh;
+  overflow: auto;
+}
+.item-card {
+  margin: 5px;
+  min-width: 100px;
+  max-width: 150px;
+  cursor: pointer;
+  margin: 0;
+}
+.item-cart {
+  min-height: 70vh;
+
+  overflow: hidden;
+}
+.card-header {
+  background-color: black;
+  color: white;
+}
+.payment-card {
+  margin-top: 5px;
+  min-height: 22vh;
+}
+.price-tag {
+  position: absolute;
+  top: -5px;
+  right: 3px;
+  background-color: rgb(233, 130, 13);
+}

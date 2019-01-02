@@ -1,3 +1,63 @@
-<p>
-  pos works!
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col col-md-8">
+
+      <div class="card">
+        <div class="card-body">
+          <ul class="nav nav-pills nav-fill">
+            <li class="nav-item">
+              <a class="nav-link active " id="-1" data-toggle="pill" href="#pills-home" (click)="tabSelected($event.target.id)"
+                aria-selected="true">ທັງໝົດ</a>
+            </li>
+            <li class="nav-item" *ngFor="let fd of foodTypes">
+              <a class="nav-link" id="{{ fd.id }} " data-toggle="pill" href="#pills-home" aria-selected="false" (click)="tabSelected($event.target.id)">{{fd.food_type_desc_la}}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="card item-container">
+        <div class="card-body">
+          <div class="row">
+            <div class="card item-card" *ngFor="let f of foods" (click)="addItemToCard(f,'test')">
+              <img src="../../../assets/images/No_Image_Available.gif" class="card-img-top" alt="...">
+              <div class="card-body">
+                <div class="col-14 text-truncate text-center">
+                  {{ f.food_name }}
+                </div>
+                <h5><span class="badge badge-secondary shadow-sm p-3 mb-5  rounded price-tag ">{{ f.price |
+                    number }}</span></h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col col-md-4">
+      <div class="card item-cart">
+        <div class="card-header">
+          ລາຍການທີ່ເລືອກໄວ້
+        </div>
+        <div class="card-body">
+          <ul class="list-group">
+            <li *ngFor="let item of items" class="list-group-item">{{ item.food['food_name'] }} X {{ item.quantity }}
+              <div class="float-right">{{ item.food['price'] * item.quantity | number }} <span><i class="material-icons">
+                    remove_shopping_cart
+                  </i></span></div>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+
+      <div class="card payment-card">
+        <div class="card-header">
+          ຈ່າຍເງິນ
+        </div>
+        <div class="card-body">
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

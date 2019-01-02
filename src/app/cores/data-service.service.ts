@@ -38,6 +38,14 @@ export class DataServiceService {
       });
     });
   }
+  getFoodByType(id): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url + 'foodsbytype/' + id, this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
+
   getFoodMasters(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.get(this.url + 'foodmaster', this.httpOptions).subscribe(res => {
