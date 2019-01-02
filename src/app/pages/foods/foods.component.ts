@@ -187,11 +187,29 @@ export class FoodsComponent implements OnInit {
         centered: true,
         size: 'lg'
       });
-    modalRef.componentInstance.form_type = "kitchen";
+    modalRef.componentInstance.form_type = { 'form': 'kitchen', 'description': 'add new Kitchen', 'id': '-1' };
     modalRef.result.then(() => {
-      this.getKitchen();
+      this.loadAll();
     });
   }
+
+  openFoodInfo(id, enabled_child_food) {
+    //console.log(enabled_child_food);
+    if (enabled_child_food) {
+      alert('Cannot update Parental Food');
+      return;
+    }
+    const modalRef = this.modalService.open(CommonDialogComponent,
+      {
+        centered: true,
+        //size: 'lg'
+      });
+    modalRef.componentInstance.form_type = { 'form': 'food', 'description': 'Food update', 'id': id };
+    modalRef.result.then(() => {
+      this.loadAll();
+    });
+  }
+
   loadAll() {
     this.getUserInfo();
     this.getFoodTypes();

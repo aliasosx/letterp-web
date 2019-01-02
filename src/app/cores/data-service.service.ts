@@ -109,4 +109,18 @@ export class DataServiceService {
       });
     });
   }
+  getFoodById(id): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url + 'foods/' + id, this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
+  updateFood(food): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.put(this.url + 'foods/' + food.id, food.data, this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
 }

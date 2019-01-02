@@ -12,13 +12,17 @@ export class CommonDialogComponent implements OnInit {
 
   constructor(public activeModal: NgbActiveModal, private dataService: DataServiceService) {
     this.getChefs();
+    this.getFoodTypes();
+    this.getKitchen();
   }
   @Input() form_type: any;
 
   KitchenForm: FormGroup;
   FoodInfo: FormGroup;
-
+  foodtypes: any;
   chefs: any;
+  food: any;
+  kitchens: any;
 
   ngOnInit() {
     // initialize kitchen form
@@ -40,6 +44,12 @@ export class CommonDialogComponent implements OnInit {
       "kitchenId": new FormControl(),
       "userId": new FormControl(),
     });
+
+
+    if (this.form_type.id && this.form_type.id != '-1') {
+      this.getFoodById(this.form_type.id);
+    }
+
   }
   async getChefs() {
     const c = await this.dataService.getChefs().then(chefs => this.chefs = chefs);
@@ -54,5 +64,35 @@ export class CommonDialogComponent implements OnInit {
         }
       });
     }
+  }
+  async getFoodById(id) {
+    const c = await this.dataService.getFoodById(id).then(food => {
+      this.food = food
+      this.FoodInfo.patchValue(this.food);
+      //console.log(food);
+    });
+  }
+  async getFoodTypes() {
+    const c = await this.dataService.getFoodTypes().then(ft => {
+      this.foodtypes = ft;
+    });
+  }
+  async getKitchen() {
+    const c = await this.dataService.getKitchen().then(kt => {
+      this.kitchens = kt;
+    })
+  }
+  updateFood() {
+    if (this.FoodInfo.valid) {
+      let food = this.FoodInfo.value;
+      this.dataService.updateFood({ id: this.food.id, data: food }).then((res) => {
+        if (res['status'] == 'success') {
+          this.activeModal.close('success');
+        } else {
+          return;
+        }
+      });
+    }
+
   }
 }
