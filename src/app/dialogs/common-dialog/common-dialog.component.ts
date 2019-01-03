@@ -14,6 +14,7 @@ export class CommonDialogComponent implements OnInit {
     this.getChefs();
     this.getFoodTypes();
     this.getKitchen();
+
   }
   @Input() form_type: any;
 
@@ -23,6 +24,8 @@ export class CommonDialogComponent implements OnInit {
   chefs: any;
   food: any;
   kitchens: any;
+  foodMasterSelectForm: FormGroup;
+  subFoods: any;
 
   ngOnInit() {
     // initialize kitchen form
@@ -45,11 +48,14 @@ export class CommonDialogComponent implements OnInit {
       "userId": new FormControl(),
     });
 
+    this.foodMasterSelectForm = new FormGroup({
+      'parental_food': new FormControl()
+    });
 
     if (this.form_type.id && this.form_type.id != '-1') {
       this.getFoodById(this.form_type.id);
     }
-
+    this.getSubFood();
   }
   async getChefs() {
     const c = await this.dataService.getChefs().then(chefs => this.chefs = chefs);
@@ -82,6 +88,14 @@ export class CommonDialogComponent implements OnInit {
       this.kitchens = kt;
     })
   }
+
+  async getSubFood() {
+    const s = await this.dataService.getSubFood(this.form_type.id).then((res) => {
+      this.subFoods = res;
+    });
+  }
+
+
   updateFood() {
     if (this.FoodInfo.valid) {
       let food = this.FoodInfo.value;
@@ -93,6 +107,24 @@ export class CommonDialogComponent implements OnInit {
         }
       });
     }
+  }
+  async subfoodselect(e) {
+    const c = await this.dataService.getFoodById(e.value).then(food => {
+      if (food) {
+        let subfood = food;
+        subfood.food_name = this.form_type.food_name + ' - ' + food['food_name'];
+        this.activeModal.close(subfood);
+      } else {
+        return;
+      }
+    });
+  }
+  async addNote(e) {
+    let data = {
+      'note': e.value.trim(),
+      'foodid': this.form_type.id,
+    }
+    this.activeModal.close(data);
 
   }
 }

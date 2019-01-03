@@ -14,6 +14,7 @@ import { PosComponent } from './pages/pos/pos.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { FoodtypeComponent } from './dialogs/foodtype/foodtype.component';
 import { CommonDialogComponent } from './dialogs/common-dialog/common-dialog.component';
+import { PaymentConfirmComponent } from './payments/payment-confirm/payment-confirm.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { CommonDialogComponent } from './dialogs/common-dialog/common-dialog.com
     PosComponent,
     FoodtypeComponent,
     CommonDialogComponent,
+    PaymentConfirmComponent,
 
   ],
   imports: [

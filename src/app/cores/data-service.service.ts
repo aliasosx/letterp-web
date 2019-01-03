@@ -131,4 +131,11 @@ export class DataServiceService {
       });
     });
   }
+  getSubFood(id): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url + 'childFood/' + id, this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
 }

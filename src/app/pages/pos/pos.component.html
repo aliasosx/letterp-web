@@ -18,14 +18,18 @@
       <div class="card item-container">
         <div class="card-body">
           <div class="row">
-            <div class="card item-card" *ngFor="let f of foods" (click)="addItemToCard(f,'test')">
-              <img src="../../../assets/images/No_Image_Available.gif" class="card-img-top" alt="...">
+            <div class="card item-card" *ngFor="let f of foods" (click)="addItemToCard(f)">
+              <img src="{{ f.photo }}" class="card-img-top" alt="..." title="{{ f.food_name }}">
               <div class="card-body">
                 <div class="col-14 text-truncate text-center">
                   {{ f.food_name }}
                 </div>
-                <h5><span class="badge badge-secondary shadow-sm p-3 mb-5  rounded price-tag ">{{ f.price |
-                    number }}</span></h5>
+                <div *ngIf="!f.enabled_child_food ; else containChildFood">
+                  <h5><span class="badge badge-secondary shadow-sm p-3 mb-5  rounded price-tag ">{{ f.price | number }}</span></h5>
+                </div>
+                <ng-template #containChildFood>
+                  <h5><span class="badge badge-secondary shadow-sm p-3 mb-5  rounded child-tag "> ເລືອກ </span></h5>
+                </ng-template>
               </div>
             </div>
           </div>
@@ -33,36 +37,45 @@
       </div>
     </div>
     <div class="col col-md-4">
-      <div class="card item-cart">
+      <div class="card">
         <div class="card-header">
           ລາຍການທີ່ເລືອກໄວ້
         </div>
-        <div class="card-body">
-          <ul class="list-group">
+        <div class="card-body item-cart">
+          <div class="row row-item">
             <div class="col">
-              <li *ngFor="let item of items" class="list-group-item">{{ item.food['food_name'] }} X {{ item.quantity }}
-                <div class="float-right">{{ item.food['price'] * item.quantity | number }} <span class="cart-remove-icon"
-                    (click)="removeCardItem(item.food['id'])"><img src="../../../assets/images/trash.svg"></span></div>
-              </li>
-            </div>
-          </ul>
+              <ul class="list-group">
+                <div class="col item-col">
+                  <li *ngFor="let item of items" class="list-group-item">{{ item.food['food_name'] }} X <strong>{{
+                      item.quantity }}</strong> ພິເສດ {{ item.note }}
 
+                    <div class="float-right">{{ item.food['price'] * item.quantity | number }}
+                      <span class="cart-remove-icon" (click)="removeCardItem(item.food['id'])"><img src="../../../assets/images/trash.svg">
+                      </span>
+                      <span class="cart-remove-icon" (click)="addnote (item.food['id'])"><img src="../../../assets/images/edit.svg">
+                      </span>
+                    </div>
+                  </li>
+                </div>
+              </ul>
+            </div>
+          </div>
         </div>
         <div class="card-footer">
           <div class="row">
             <div class="col col-md-8 text-right">ຍອດລວມ : </div>
-            <div class="col col-md-4 text-right">{{ total |number }}</div>
+            <div class="col col-md-4 text-right">
+              <strong>{{ total |number }} ກີບ</strong>
+            </div>
           </div>
-
         </div>
       </div>
-
       <div class="card payment-card">
-        <div class="card-header">
-          ຈ່າຍເງິນ
-        </div>
         <div class="card-body">
-
+          <div class="row">
+            <div class="col col-md-6 text-center"><button type="button" class="btn btn-lg btn-success btn-payment">ຈ່າຍເງິນສົດ</button></div>
+            <div class="col col-md-6 text-center"><button type="button" class="btn btn-lg btn-primary btn-payment">ຜ່ານບັດ</button></div>
+          </div>
         </div>
       </div>
 

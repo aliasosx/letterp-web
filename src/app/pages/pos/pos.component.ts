@@ -1,6 +1,9 @@
+import { CommonDialogComponent } from './../../dialogs/common-dialog/common-dialog.component';
 import { Component, OnInit } from '@angular/core';
 import { DataServiceService } from 'src/app/cores/data-service.service';
 import { Item } from 'src/app/models/Item';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-pos',
@@ -9,7 +12,7 @@ import { Item } from 'src/app/models/Item';
 })
 export class PosComponent implements OnInit {
 
-  constructor(private dataService: DataServiceService) {
+  constructor(private dataService: DataServiceService, private modalService: NgbModal) {
     this.loadFoodType();
     this.loadFoods();
     if (localStorage.getItem('cart')) {
@@ -42,16 +45,16 @@ export class PosComponent implements OnInit {
   async tabSelected(foodtypeId) {
     if (foodtypeId == -1) {
       this.loadFoods();
+    } else {
+      const f = await this.dataService.getFoodByType(foodtypeId).then(f => this.foods = f);
     }
-    const f = await this.dataService.getFoodByType(foodtypeId).then(f => this.foods = f);
   }
   foodSelected(foodId) {
     console.log(foodId);
   }
 
   addItemToCard(food: any, note) {
-
-    if (food && !food.enabled_subtype) {
+    if (food && !food.enabled_child_food) {
       let items: Item = {
         food: food,
         quantity: 1,
@@ -83,6 +86,46 @@ export class PosComponent implements OnInit {
         }
       }
       this.loadCart();
+    } else if (food && food.enabled_child_food) {
+      const foodId = food['id'];
+      const modalRef = this.modalService.open(CommonDialogComponent,
+        {
+          centered: true
+        });
+      modalRef.componentInstance.form_type = { 'form': 'parentalfood', 'description': 'Choose Sub Food', 'id': foodId, 'food_name': food['food_name'] };
+      modalRef.result.then((food) => {
+        let items: Item = {
+          food: food,
+          quantity: 1,
+          note: note,
+        };
+        console.log(items);
+        if (localStorage.getItem('cart') == null) {
+          let cart: any = [];
+          cart.push(JSON.stringify(items));
+          localStorage.setItem('cart', JSON.stringify(cart));
+        } else {
+          let cart: any = JSON.parse(localStorage.getItem('cart'));
+          let index: number = -1;
+          for (var i = 0; i < cart.length; i++) {
+            let item: Item = JSON.parse(cart[i]);
+            if (item.food['id'] == food['id']) {
+              index = i;
+              break;
+            }
+          }
+          if (index == -1) {
+            cart.push(JSON.stringify(items));
+            localStorage.setItem('cart', JSON.stringify(cart));
+          } else {
+            let item: Item = JSON.parse(cart[index]);
+            item.quantity += 1;
+            cart[index] = JSON.stringify(item);
+            localStorage.setItem('cart', JSON.stringify(cart));
+          }
+        }
+        this.loadCart();
+      });
     }
   }
 
@@ -144,5 +187,33 @@ export class PosComponent implements OnInit {
     localStorage.setItem('cart', JSON.stringify(cart));
     this.loadCart();
     this.checkPayment();
+  }
+
+  addnote(foodId) {
+    const modalRef = this.modalService.open(CommonDialogComponent, {
+      centered: true
+    });
+    modalRef.componentInstance.form_type = { 'form': 'addnote', 'description': 'add note', 'id': foodId };
+    modalRef.result.then((data) => {
+      this.addNoteToItem(data);
+    });
+  }
+
+  addNoteToItem(data) {
+    let cart: any = JSON.parse(localStorage.getItem('cart'));
+    //console.log(cart.length);
+    let index: number = -1;
+    for (var i = 0; i < cart.length; i++) {
+      let item: Item = JSON.parse(cart[i]);
+      if (item.food['id'] == data.foodid) {
+        index = i;
+        break;
+      }
+    }
+    let item: Item = JSON.parse(cart[index]);
+    item.note = data.note;
+    cart[index] = JSON.stringify(item);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    this.loadCart();
   }
 }

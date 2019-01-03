@@ -8,20 +8,26 @@
 .item-container {
   margin-top: 5px;
   padding: 0;
-  height: 83vh;
+  height: 75vh;
   overflow: auto;
 }
 .item-card {
   margin: 5px;
+  margin-left: 5px;
   min-width: 100px;
-  max-width: 150px;
+  max-width: 8vw;
   cursor: pointer;
   margin: 0;
 }
 .item-cart {
-  min-height: 70vh;
+  min-height: 50vh;
+  overflow: auto;
+  max-height: 60vh;
+}
 
-  overflow: hidden;
+.list-group-item {
+  font-size: 0.8em;
+  width: 25vw ;
 }
 .card-header {
   background-color: black;
@@ -29,13 +35,21 @@
 }
 .payment-card {
   margin-top: 5px;
-  min-height: 22vh;
+  min-height: 13.5vh;
+  max-height: 13.5vh;
+
 }
 .price-tag {
   position: absolute;
   top: -5px;
   right: 3px;
-  background-color: rgb(233, 130, 13);
+  background-color: rgb(241, 162, 70);
+}
+.child-tag{
+  position: absolute;
+  top: -5px;
+  right: 3px;
+  background-color: rgb(250, 58, 10);
 }
 .cart-remove-icon{
   cursor: pointer;
@@ -43,4 +57,7 @@
 .total-footer {
   position: absolute;
   bottom: 0;
+}
+.btn-payment {
+  width: 250px;
 }

@@ -65,8 +65,35 @@
     </div>
     <!--End Food Form -->
 
+    <!-- Parents food Form -->
+    <div *ngSwitchCase="'parentalfood'">
+      <div class="form-group">
+        <label for="parentFoodSelect">{{ form_type.food_name }}</label>
+        <div class="food_type-div">
+          <select id="parentFoodSelect" class="form-control col col-md-12" (change)="subfoodselect($event.target)">
+            <option value="-1" disabled>...</option>
+            <option value="{{ s.id }}" *ngFor="let s of subFoods ">{{ s.food_name }} ລາຄາ {{ s.price }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <!-- end parent food-->
 
+    <!-- Add note -->
+
+    <div *ngSwitchCase="'addnote'">
+      <div class="form-group">
+        <label for="addnotetxt">ຄຳສັ່ງພິເສດ</label>
+        <div class="row">
+          <div class="col col-md-12">
+            <input type="text" class="form-control" required placeholder="ຄຳສັ່ງພິເສດ ..." (keyup.enter)="addNote($event.target)">
+          </div>
+
+        </div>
+      </div>
+    </div>
   </div>
+
 
 </div>
 <div class="modal-footer">
