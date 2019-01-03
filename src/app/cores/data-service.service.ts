@@ -138,4 +138,18 @@ export class DataServiceService {
       });
     });
   }
+  getCustomers(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url + 'customers', this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
+  getAliveTickets(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url + 'tickets', this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
 }

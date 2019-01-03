@@ -42,6 +42,7 @@ import { PaymentConfirmComponent } from './payments/payment-confirm/payment-conf
   entryComponents: [
     FoodtypeComponent,
     CommonDialogComponent,
+    PaymentConfirmComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

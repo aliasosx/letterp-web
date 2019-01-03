@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataServiceService } from 'src/app/cores/data-service.service';
 import { Item } from 'src/app/models/Item';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PaymentConfirmComponent } from 'src/app/payments/payment-confirm/payment-confirm.component';
 
 
 @Component({
@@ -215,5 +216,11 @@ export class PosComponent implements OnInit {
     cart[index] = JSON.stringify(item);
     localStorage.setItem('cart', JSON.stringify(cart));
     this.loadCart();
+  }
+  openPaymentForm() {
+    const modalRef = this.modalService.open(PaymentConfirmComponent, {
+      centered: true,
+    });
+    modalRef.componentInstance.data = this.grandTotal;
   }
 }

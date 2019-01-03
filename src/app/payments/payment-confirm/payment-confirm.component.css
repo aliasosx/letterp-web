@@ -1,0 +1,10 @@
+* {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif , 'phetsarath ot';
+}
+
+.card {
+  margin-top: 5px;
+}
+.payment-btn {
+  min-width: 200px;
+}

@@ -73,8 +73,9 @@
       <div class="card payment-card">
         <div class="card-body">
           <div class="row">
-            <div class="col col-md-6 text-center"><button type="button" class="btn btn-lg btn-success btn-payment">ຈ່າຍເງິນສົດ</button></div>
-            <div class="col col-md-6 text-center"><button type="button" class="btn btn-lg btn-primary btn-payment">ຜ່ານບັດ</button></div>
+            <div class="col col-md-6 text-center"><button type="button" [disabled]="!paymentReady" (click)="openPaymentForm()"
+                class="btn btn-lg btn-success btn-payment">ຈ່າຍເງິນສົດ</button></div>
+            <div class="col col-md-6 text-center"><button type="button" [disabled]="!paymentReady" class="btn btn-lg btn-primary btn-payment">ຜ່ານບັດ</button></div>
           </div>
         </div>
       </div>
