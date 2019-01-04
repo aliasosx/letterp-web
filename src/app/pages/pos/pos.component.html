@@ -48,7 +48,6 @@
                 <div class="col item-col">
                   <li *ngFor="let item of items" class="list-group-item">{{ item.food['food_name'] }} X <strong>{{
                       item.quantity }}</strong> ພິເສດ {{ item.note }}
-
                     <div class="float-right">{{ item.food['price'] * item.quantity | number }}
                       <span class="cart-remove-icon" (click)="removeCardItem(item.food['id'])"><img src="../../../assets/images/trash.svg">
                       </span>
@@ -58,6 +57,9 @@
                   </li>
                 </div>
               </ul>
+              <div [ngClass]="noitemDiv">
+                <img class="w-50" src="../../../assets/images/empty.gif">
+              </div>
             </div>
           </div>
         </div>
@@ -74,8 +76,8 @@
         <div class="card-body">
           <div class="row">
             <div class="col col-md-6 text-center"><button type="button" [disabled]="!paymentReady" (click)="openPaymentForm()"
-                class="btn btn-lg btn-success btn-payment">ຈ່າຍເງິນສົດ</button></div>
-            <div class="col col-md-6 text-center"><button type="button" [disabled]="!paymentReady" class="btn btn-lg btn-primary btn-payment">ຜ່ານບັດ</button></div>
+                class="btn btn-lg btn-success btn-block">ຈ່າຍເງິນສົດ</button></div>
+            <div class="col col-md-6 text-center"><button type="button" [disabled]="!paymentReady" class="btn btn-lg btn-warning btn-block">ຜ່ານບັດ</button></div>
           </div>
         </div>
       </div>

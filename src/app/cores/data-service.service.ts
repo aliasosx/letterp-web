@@ -86,6 +86,14 @@ export class DataServiceService {
       });
     });
   }
+  getFoodForPOS(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url + 'fooddetailmasteronly', this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
+
   deleteFood(id): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.delete(this.url + 'foods/' + id, this.httpOptions).subscribe(res => {
@@ -148,6 +156,13 @@ export class DataServiceService {
   getAliveTickets(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.get(this.url + 'tickets', this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
+  createOrder(order): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.url + 'makeorders', order, this.httpOptions).subscribe(res => {
         resolve(res);
       });
     });

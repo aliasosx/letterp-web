@@ -1,9 +1,12 @@
+import { AuthServiceService } from './../../cores/auth-service.service';
+import { Router } from '@angular/router';
 import { CommonDialogComponent } from './../../dialogs/common-dialog/common-dialog.component';
 import { Component, OnInit } from '@angular/core';
 import { DataServiceService } from 'src/app/cores/data-service.service';
 import { Item } from 'src/app/models/Item';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PaymentConfirmComponent } from 'src/app/payments/payment-confirm/payment-confirm.component';
+
 
 
 @Component({
@@ -13,7 +16,9 @@ import { PaymentConfirmComponent } from 'src/app/payments/payment-confirm/paymen
 })
 export class PosComponent implements OnInit {
 
-  constructor(private dataService: DataServiceService, private modalService: NgbModal) {
+  constructor(private dataService: DataServiceService, private modalService: NgbModal, private route: Router, private auth: AuthServiceService) {
+    let token = localStorage.getItem('abcd');
+    if (!token) { route.navigateByUrl('/') }
     this.loadFoodType();
     this.loadFoods();
     if (localStorage.getItem('cart')) {
@@ -23,9 +28,8 @@ export class PosComponent implements OnInit {
 
   foodTypes: any;
   foods: any;
-
   paymentReady: boolean = false;
-
+  noitemDiv = "show-empty";
   total: number = 0;
   tax: number = 0;
   tax_rate: number = 0;
@@ -33,15 +37,20 @@ export class PosComponent implements OnInit {
   discount_rate: number = 0;
   grandTotal: number = 0;
   items: Item[] = [];
+  userId: number;
+  userInfo: any;
+
 
   ngOnInit() {
-
+    this.auth.tokenVerify(localStorage.getItem('abcd')).then((user) => {
+      this.userInfo = user;
+    });
   }
   async loadFoodType() {
     const f = await this.dataService.getFoodTypes().then(fd => this.foodTypes = fd);
   }
   async loadFoods() {
-    const f = await this.dataService.getFoodDetail().then(f => this.foods = f);
+    const f = await this.dataService.getFoodForPOS().then(f => this.foods = f);
   }
   async tabSelected(foodtypeId) {
     if (foodtypeId == -1) {
@@ -51,7 +60,7 @@ export class PosComponent implements OnInit {
     }
   }
   foodSelected(foodId) {
-    console.log(foodId);
+    //console.log(foodId);
   }
 
   addItemToCard(food: any, note) {
@@ -61,7 +70,7 @@ export class PosComponent implements OnInit {
         quantity: 1,
         note: note,
       };
-      console.log(items);
+      //console.log(items);
       if (localStorage.getItem('cart') == null) {
         let cart: any = [];
         cart.push(JSON.stringify(items));
@@ -100,7 +109,7 @@ export class PosComponent implements OnInit {
           quantity: 1,
           note: note,
         };
-        console.log(items);
+        //console.log(items);
         if (localStorage.getItem('cart') == null) {
           let cart: any = [];
           cart.push(JSON.stringify(items));
@@ -164,13 +173,21 @@ export class PosComponent implements OnInit {
   }
 
   checkPayment() {
-    let items = JSON.parse(localStorage.getItem('cart'));
+    try {
+      let items = JSON.parse(localStorage.getItem('cart'));
 
-    if (items.length > 0) {
-      this.paymentReady = true;
-    } else {
+      if (items.length > 0) {
+        this.paymentReady = true;
+        this.noitemDiv = "hidden-div";
+      } else {
+        this.paymentReady = false;
+        this.noitemDiv = "show-empty";
+      }
+    } catch (err) {
       this.paymentReady = false;
+      this.noitemDiv = "show-empty";
     }
+
     //console.log(this.paymentReady);
   }
 
@@ -221,6 +238,20 @@ export class PosComponent implements OnInit {
     const modalRef = this.modalService.open(PaymentConfirmComponent, {
       centered: true,
     });
-    modalRef.componentInstance.data = this.grandTotal;
+    modalRef.componentInstance.data = { 'grandtotal': this.grandTotal, 'user': this.userInfo };
+    try {
+      modalRef.result.then((res) => {
+        if (res === 'success') {
+          localStorage.removeItem('cart');
+          this.loadCart();
+          this.checkPayment();
+        } else {
+          return;
+        }
+      })
+    } catch (err) {
+      console.log(err);
+    }
+
   }
 }

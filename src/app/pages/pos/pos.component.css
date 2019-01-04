@@ -61,3 +61,11 @@
 .btn-payment {
   width: 250px;
 }
+.hidden-div {
+    display: none;
+}
+.show-empty {
+  position: absolute;
+  top: 100px;
+  left: 190px;
+}
