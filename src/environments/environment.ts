@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   url: 'http://localhost:5000/',
+  photoPath: 'http://localhost:5000/uploads/'
 };
 
 /*

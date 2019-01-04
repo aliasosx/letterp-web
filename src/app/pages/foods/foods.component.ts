@@ -7,6 +7,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FoodtypeComponent } from 'src/app/dialogs/foodtype/foodtype.component';
 import { CommonDialogComponent } from 'src/app/dialogs/common-dialog/common-dialog.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-foods',
@@ -14,7 +15,11 @@ import { CommonDialogComponent } from 'src/app/dialogs/common-dialog/common-dial
   styleUrls: ['./foods.component.css']
 })
 export class FoodsComponent implements OnInit {
+  photoUrl = environment.photoPath;
   userInfo: any;
+  file: File;
+  photo: any = "../../../assets/images/No_Image_Available.gif";
+
   constructor(private dataService: DataServiceService, private route: Router, private auth: AuthServiceService, private modalService: NgbModal) {
     let token = localStorage.getItem('abcd');
     if (!token) { route.navigateByUrl('/') }
@@ -216,5 +221,23 @@ export class FoodsComponent implements OnInit {
     this.getMasterFood();
     this.getKitchen();
     this.getFoods();
+  }
+  async uploadFile(e) {
+    this.file = e.target.files[0];
+
+    var reader = new FileReader();
+    reader.readAsDataURL(this.file);
+    reader.onload = (e) => {
+      this.photo = (<FileReader>e.target).result;
+    }
+
+    const c = await this.uploadFileToServer(this.file);
+  }
+  async uploadFileToServer(file) {
+    const uploadData = new FormData();
+    uploadData.append('image', this.file);
+    this.dataService.uploadFoodImage(uploadData).then((res) => {
+      console.log(res);
+    });
   }
 }

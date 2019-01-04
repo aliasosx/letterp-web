@@ -1,0 +1,22 @@
+<div class="card">
+  <div class="card-header">
+    ລາຍການອາຫານທັງໝົດ ທີ່ຍັງຢູ່ໃນ Q
+  </div>
+  <div class="card-body">
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let ticket of ticketQ">
+        <div class="row">
+          <div class="col col-md-4">
+            <div class="qDiv">
+              <a>{{ ticket.ticket_number }}</a>
+            </div>
+          </div>
+          <div class="col col-md-4">
+
+          </div>
+          <div class="col col-md-4"></div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

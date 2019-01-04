@@ -167,4 +167,25 @@ export class DataServiceService {
       });
     });
   }
+  uploadFoodImage(file): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.url + 'upload', file, this.httpOptions).subscribe(res => {
+        console.log(res);
+        resolve(res);
+      });
+    });
+  }
+  getFoodPhoto(file) {
+    this.http.get(this.url + 'uploads/food/' + file, this.httpOptions).subscribe(photo => {
+      return photo;
+    });
+  }
+  getTicketsInQ(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url + 'kitchenorders', this.httpOptions).subscribe(res => {
+        console.log(res);
+        resolve(res);
+      });
+    });
+  }
 }

@@ -15,6 +15,9 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { FoodtypeComponent } from './dialogs/foodtype/foodtype.component';
 import { CommonDialogComponent } from './dialogs/common-dialog/common-dialog.component';
 import { PaymentConfirmComponent } from './payments/payment-confirm/payment-confirm.component';
+import { UploadComponent } from './dialogs/upload/upload.component';
+import { OrdermonitorComponent } from './pages/ordermonitor/ordermonitor.component';
+import { KitchenmonitorComponent } from './pages/kitchenmonitor/kitchenmonitor.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,9 @@ import { PaymentConfirmComponent } from './payments/payment-confirm/payment-conf
     FoodtypeComponent,
     CommonDialogComponent,
     PaymentConfirmComponent,
+    UploadComponent,
+    OrdermonitorComponent,
+    KitchenmonitorComponent,
 
   ],
   imports: [

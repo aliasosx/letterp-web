@@ -252,6 +252,10 @@ export class PosComponent implements OnInit {
     } catch (err) {
       console.log(err);
     }
-
   }
+  getPhoto(f) {
+    console.log(f);
+    return this.dataService.getFoodPhoto(f);
+  }
+
 }

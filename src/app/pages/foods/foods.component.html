@@ -172,13 +172,17 @@
           <div class="form-group">
             <label for="txt_food_name">ຊື່ອາຫານ</label>
             <div class="row food_type-div">
-              <input type="text" required class="form-control col col-md-10" formControlName="food_name" id="txt_food_name"
+              <input type="text" required class="form-control col col-md-8" formControlName="food_name" id="txt_food_name"
                 placeholder="ຊື່ອາຫານ">
+              <input type="file" style="display: none" (change)="uploadFile($event)" #fileInput>
               <span class="float-mr col col-md-2 ">
-                <i class="material-icons add-icon ">
+                <i class="material-icons add-icon " (click)="fileInput.click()">
                   add_a_photo
                 </i>
               </span>
+              <div class="foodImg">
+                <img [src]="photo" class="w-100">
+              </div>
             </div>
           </div>
           <div class="form-group">
