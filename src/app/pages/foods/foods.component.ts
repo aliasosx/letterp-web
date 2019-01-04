@@ -40,6 +40,7 @@ export class FoodsComponent implements OnInit {
   foodForm: FormGroup;
   alert: any;
   foods: any;
+  photoToSave: string;
 
   ngOnInit() {
 
@@ -106,7 +107,7 @@ export class FoodsComponent implements OnInit {
         "enabled_child_food": 1,
         "food_name": this.foodForm.get('food_name').value,
         "foodtypeId": this.foodForm.get('food_type').value,
-        "photo": "../../../assets/images/No_Image_Available.gif",
+        "photo": this.photoToSave,
         "kitchenId": this.foodForm.get('kitchen_code').value,
         "userId": this.userInfo.id,
       }
@@ -121,7 +122,7 @@ export class FoodsComponent implements OnInit {
         "enabled_child_food": false,
         "food_name": this.foodForm.get('food_name').value,
         "foodtypeId": this.foodForm.get('food_type').value,
-        "photo": "../../../assets/images/No_Image_Available.gif",
+        "photo": this.photoToSave,
         "kitchenId": this.foodForm.get('kitchen_code').value,
         "userId": this.userInfo.id,
       }
@@ -135,7 +136,7 @@ export class FoodsComponent implements OnInit {
         "enabled_child_food": false,
         "food_name": this.foodForm.get('food_name').value,
         "foodtypeId": this.foodForm.get('food_type').value,
-        "photo": "../../../assets/images/No_Image_Available.gif",
+        "photo": this.photoToSave,
         "kitchenId": this.foodForm.get('kitchen_code').value,
         "userId": this.userInfo.id,
       }
@@ -234,10 +235,11 @@ export class FoodsComponent implements OnInit {
     const c = await this.uploadFileToServer(this.file);
   }
   async uploadFileToServer(file) {
+    console.log(file);
     const uploadData = new FormData();
-    uploadData.append('image', this.file);
+    uploadData.append('image', file, file.name);
     this.dataService.uploadFoodImage(uploadData).then((res) => {
-      console.log(res);
+      this.photoToSave = this.photoUrl + '/images/uploads/foods/' + file.name;
     });
   }
 }
