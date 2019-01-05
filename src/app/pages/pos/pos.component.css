@@ -14,10 +14,13 @@
 .item-card {
   margin: 5px;
   margin-left: 5px;
-  min-width: 100px;
-  max-width: 8vw;
+  width: 150px;
+  min-width: 50px;
+  max-width: 150px;
   cursor: pointer;
-  margin: 0;
+  align-content: center;
+  vertical-align: middle;
+
 }
 .item-cart {
   min-height: 50vh;
@@ -43,6 +46,7 @@
   position: absolute;
   top: -5px;
   right: 3px;
+  opacity: 0.8;
   background-color: rgb(241, 162, 70);
 }
 .child-tag{
@@ -68,4 +72,17 @@
   position: absolute;
   top: 100px;
   left: 190px;
+}
+.item-photo{
+  max-height: 100px;
+
+}
+.item-img {
+  position: relative;
+  align-content: center;
+  top: 18px;
+  left: 20px;
+  width: 100px;
+  max-height: 100px;
+  max-width: 150px;
 }

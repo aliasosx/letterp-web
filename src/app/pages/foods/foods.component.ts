@@ -142,11 +142,12 @@ export class FoodsComponent implements OnInit {
       }
     }
     let performAddFood = await this.dataService.addFood(food).then(res => {
-      alert(res['status'] + ' reason ' + res['reason']);
+      //alert(res['status'] + ' reason ' + res['reason']);
       if (res['status'] == 'success') {
         this.foodForm.reset();
       }
       this.loadAll();
+      this.photo = '../../../assets/images/No_Image_Available.gif';
     }).catch((res) => {
       alert(res['status'] + ' reason ' + res['reason']);
     });

@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  url: 'http://localhost:5000/',
-  photoPath: 'http://localhost:5005/'
+  url: 'http://192.168.10.199:5000/',
+  photoPath: 'http://192.168.10.199:5005/'
 };
 
 /*

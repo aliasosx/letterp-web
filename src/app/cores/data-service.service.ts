@@ -183,7 +183,22 @@ export class DataServiceService {
   getTicketsInQ(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.get(this.url + 'kitchenorders', this.httpOptions).subscribe(res => {
-        console.log(res);
+
+        resolve(res);
+      });
+    });
+  }
+  getOrderTrack(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url + 'ordertrackings', this.httpOptions).subscribe(res => {
+
+        resolve(res);
+      });
+    });
+  }
+  updateOrderStatus(id, opts): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.put(this.url + 'orders/' + id, opts, this.httpOptions).subscribe(res => {
         resolve(res);
       });
     });

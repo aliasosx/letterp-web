@@ -1,0 +1,16 @@
+* {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif, 'phetsarath ot';
+}
+.qDiv {
+  position: relative;
+  min-width: 100px;
+  min-height: 100px;
+  color: white;
+  margin: 0 auto;
+}
+.ordertimeDiv {
+  margin-right: 10px;
+}
+.noteColor {
+  color: orange;
+}

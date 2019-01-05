@@ -6,11 +6,38 @@
     <ul class="list-group">
       <li class="list-group-item">
         <div class="row">
-          <div class="col col-md-4">
-            
-          </div>
-          <div class="col col-md-4"></div>
-          <div class="col col-md-4"></div>
+          <table class="table shadow p-3 mb-5 bg-light rounded">
+            <thead class="thead-dark">
+              <tr>
+                <th class="text-center" scope="col">Ticket</th>
+                <th class="text-center" scope="col">ເວລາສັ່ງ</th>
+                <th class="text-center" scope="col">ຜ່ານໄປແລ້ວ</th>
+                <th class="text-center" scope="col">ສະຖານະ</th>
+                <th class="text-center" scope="col">ສະຖານທີ່</th>
+                <th class="text-center" scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let order of orderTracks ; index as i">
+                <th class="text-center">
+                  <h3><span class="badge badge-secondary">{{order.tick_number}}</span></h3>
+                </th>
+                <td class="text-center">{{ order.order_datetime | date: 'HH:mm:ss' }}</td>
+                <td class="text-center">{{ order.time_passed | date: 'HH:mm:ss' }}</td>
+                <td class="text-center">
+                  <h4><span class="badge badge-secondary bg-warning">{{order.status}}</span></h4>
+                </td>
+                <td class="text-center">{{ order.location }}</td>
+                <td>
+                  <div class="row">
+                    <div class="col col-md-6"><button type="button" class="btn btn-success btn-block" (click)="completeOrder(order.id, order.ticketId)">ສົ່ງແລ້ວ</button></div>
+                    <div class="col col-md-6"><button type="button" class="btn btn-danger btn-block" (click)="cancelOrder(order.id, order.ticketId)">ຍົກເລີກ</button></div>
+                  </div>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
         </div>
       </li>
     </ul>

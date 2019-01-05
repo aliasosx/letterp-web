@@ -58,6 +58,7 @@ export class PaymentConfirmComponent implements OnInit {
     const t = await this.dataService.getAliveTickets().then((tickets) => this.tickets = tickets);
   }
   payment() {
+    this.paymentProcess = true;
     let order = {
       "grandtotal": this.data.grandtotal,
       "ticketId": this.ticket,

@@ -19,17 +19,20 @@
         <div class="card-body">
           <div class="row">
             <div class="card item-card" *ngFor="let f of foods" (click)="addItemToCard(f)">
-              <img src="{{ f.photo }}" class="card-img-top" alt="..." title="{{ f.food_name }}">
+              <img src="{{ f.photo }}" class="card-img-top item-img" alt="..." title="{{ f.food_name }}">
               <div class="card-body">
-                <div class="col-14 text-truncate text-center">
-                  {{ f.food_name }}
-                </div>
+
                 <div *ngIf="!f.enabled_child_food ; else containChildFood">
                   <h5><span class="badge badge-secondary shadow-sm p-3 mb-5  rounded price-tag ">{{ f.price | number }}</span></h5>
                 </div>
                 <ng-template #containChildFood>
                   <h5><span class="badge badge-secondary shadow-sm p-3 mb-5  rounded child-tag "> ເລືອກ </span></h5>
                 </ng-template>
+              </div>
+              <div class="card-footer">
+                <div class="col-14 text-truncate text-center">
+                  {{ f.food_name }}
+                </div>
               </div>
             </div>
           </div>
