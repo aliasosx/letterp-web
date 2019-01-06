@@ -1,0 +1,11 @@
+* {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, 'phetsarath ot';
+}
+
+.food-name {
+  margin-right: 15px;
+}
+.card-header {
+  background-color: black;
+  color: white;
+}

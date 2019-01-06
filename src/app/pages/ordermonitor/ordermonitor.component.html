@@ -20,7 +20,7 @@
             <tbody>
               <tr *ngFor="let order of orderTracks ; index as i">
                 <th class="text-center">
-                  <h3><span class="badge badge-secondary">{{order.tick_number}}</span></h3>
+                  <h2><span class="badge badge-secondary">{{order.tick_number}}</span></h2>
                 </th>
                 <td class="text-center">{{ order.order_datetime | date: 'HH:mm:ss' }}</td>
                 <td class="text-center">{{ order.time_passed | date: 'HH:mm:ss' }}</td>
@@ -30,12 +30,12 @@
                 <td class="text-center">{{ order.location }}</td>
                 <td>
                   <div class="row">
-                    <div class="col col-md-6"><button type="button" class="btn btn-success btn-block" (click)="completeOrder(order.id, order.ticketId)">ສົ່ງແລ້ວ</button></div>
-                    <div class="col col-md-6"><button type="button" class="btn btn-danger btn-block" (click)="cancelOrder(order.id, order.ticketId)">ຍົກເລີກ</button></div>
+                    <div class="col col-md-4"><button type="button" class="btn btn-primary btn-block" (click)="openOrderDetail(order)">ກວດສອບລາຍການ</button></div>
+                    <div class="col col-md-4"><button type="button" class="btn btn-success btn-block" (click)="completeOrder(order.id, order.ticketId)">ສົ່ງແລ້ວ</button></div>
+                    <div class="col col-md-4"><button type="button" class="btn btn-danger btn-block" (click)="cancelOrder(order.id, order.ticketId)">ຍົກເລີກ</button></div>
                   </div>
                 </td>
               </tr>
-
             </tbody>
           </table>
         </div>

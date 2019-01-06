@@ -1,0 +1,32 @@
+<div class="card">
+  <div class="card-header">
+    ລາຍການອາຫານທັງໝົດຂອງ Q : {{ order.tick_number }}
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col col-md-5 ticket-div text-center">
+        <div class="display-3">
+          <div class="card shadow p-3 mb-5 bg-white rounded text-nowrap">
+            <div class="card-body ">
+              Q {{ order.tick_number }}
+            </div>
+
+          </div>
+
+
+        </div>
+        <span>{{ order.order_datetime | date: 'HH:mm:ss'}}</span>
+      </div>
+      <div class="col col-md-7">
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let item of orderDetails"><a class="h5 food-name">{{ item.food_name }}</a><a
+              class="h5 float-right"> x {{
+              item.quantity }}</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <a>ກວດສອບລາຍການໃຫ້ຖືກຕ້ອງກ່ອນມອບໃຫ້ລູກຄ້າ</a>
+  </div>
+</div>

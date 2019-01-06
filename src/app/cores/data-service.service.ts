@@ -186,7 +186,13 @@ export class DataServiceService {
   getTicketsInQ(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.get(this.url + 'kitchenorders', this.httpOptions).subscribe(res => {
-
+        resolve(res);
+      });
+    });
+  }
+  getTransactionByTicketId(id): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url + 'kitchenorders/' + id, this.httpOptions).subscribe(res => {
         resolve(res);
       });
     });

@@ -18,6 +18,7 @@ import { PaymentConfirmComponent } from './payments/payment-confirm/payment-conf
 import { UploadComponent } from './dialogs/upload/upload.component';
 import { OrdermonitorComponent } from './pages/ordermonitor/ordermonitor.component';
 import { KitchenmonitorComponent } from './pages/kitchenmonitor/kitchenmonitor.component';
+import { TransactionDetailsComponent } from './dialogs/transaction-details/transaction-details.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { KitchenmonitorComponent } from './pages/kitchenmonitor/kitchenmonitor.c
     UploadComponent,
     OrdermonitorComponent,
     KitchenmonitorComponent,
+    TransactionDetailsComponent,
 
   ],
   imports: [
@@ -49,6 +51,7 @@ import { KitchenmonitorComponent } from './pages/kitchenmonitor/kitchenmonitor.c
     FoodtypeComponent,
     CommonDialogComponent,
     PaymentConfirmComponent,
+    TransactionDetailsComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
