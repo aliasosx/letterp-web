@@ -46,6 +46,7 @@ export class OrdermonitorComponent implements OnInit {
       }
     });
   }
+
   async cancelOrder(id, ticketId) {
 
     let ops = {
@@ -71,6 +72,21 @@ export class OrdermonitorComponent implements OnInit {
         centered: true
       });
     modalRef.componentInstance.order = order;
+  }
+  async recieveFromKt(id, ticketId) {
+    let ops = {
+      'statusId': 7,
+      'ticketId': ticketId
+    }
+    //    console.log(ops);
+
+    const o = await this.dataService.updateOrderStatus(id, ops).then((res) => {
+      if (res['status'] == 'success') {
+        this.getOrderTracking();
+      } else {
+        return;
+      }
+    });
   }
 
 }
