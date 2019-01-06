@@ -25,7 +25,7 @@
           <div class="form-group row">
             <label for="ticketSelect" class="col-sm-2 col-form-label">Ticket</label>
             <div class="col-sm-3">
-              <select id="ticketSelect" required class="form-control" (change)="ticketIdChange($event.target.value)">
+              <select id="ticketSelect" required class="form-control" (change)="ticketIdChange($event.target.value, $event)">
                 <option value="-1" disabled>------</option>
                 <option value="{{ ticket.id }}" *ngFor="let ticket of tickets">{{ ticket.tick_number }}</option>
               </select>

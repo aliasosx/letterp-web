@@ -113,6 +113,7 @@ export class CommonDialogComponent implements OnInit {
       if (food) {
         let subfood = food;
         subfood.food_name = this.form_type.food_name + ' - ' + food['food_name'];
+        subfood.food_name_en = this.form_type.food_name_en + ' - ' + food['food_name_en'];
         this.activeModal.close(subfood);
       } else {
         return;
@@ -125,6 +126,5 @@ export class CommonDialogComponent implements OnInit {
       'foodid': this.form_type.id,
     }
     this.activeModal.close(data);
-
   }
 }

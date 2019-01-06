@@ -102,7 +102,7 @@ export class PosComponent implements OnInit {
         {
           centered: true
         });
-      modalRef.componentInstance.form_type = { 'form': 'parentalfood', 'description': 'Choose Sub Food', 'id': foodId, 'food_name': food['food_name'] };
+      modalRef.componentInstance.form_type = { 'form': 'parentalfood', 'description': 'Choose Sub Food', 'id': foodId, 'food_name': food['food_name'], 'food_name_en': food['food_name_en'] };
       modalRef.result.then((food) => {
         let items: Item = {
           food: food,

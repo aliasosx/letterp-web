@@ -10,6 +10,7 @@ export class DataServiceService {
   constructor(private http: HttpClient) { }
   url = environment.url;
   photoUrl = environment.photoPath;
+  printUrl = environment.printerUrl;
   token: any;
 
   httpOptions = {
@@ -102,9 +103,11 @@ export class DataServiceService {
       });
     });
   }
+
   getMenuByUserId(id) {
     return this.http.get(this.url + 'menubyuserid/' + id, this.httpOptions);
   }
+
   createFoodType(foodType): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.post(this.url + 'foodtypes', foodType, this.httpOptions).subscribe(res => {
@@ -199,6 +202,20 @@ export class DataServiceService {
   updateOrderStatus(id, opts): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.put(this.url + 'orders/' + id, opts, this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
+  print_local(data): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.printUrl + 'print', data).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
+  getTicketNumber(id): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url + 'ticket/' + id, this.httpOptions).subscribe(res => {
         resolve(res);
       });
     });
