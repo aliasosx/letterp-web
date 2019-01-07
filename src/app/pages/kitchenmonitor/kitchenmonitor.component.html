@@ -12,14 +12,14 @@
               <a class="display-4 ">{{ ticket[0].tick_number }}</a>
             </div>
           </div>
-          <div class="col col-md-4 text-center">
+          <div class="col col-md-6 text-center">
             <div class="qDiv shadow p-3 mb-5 bg-dark rounded">
               <div class="col "><strong>ລາຍການອາຫານ</strong></div>
               <ul class="list-group" *ngFor="let food of ticket ; index as i">
                 <li class="list-group-item bg-dark">
                   <div class="row">
                     <div class="col col-md-1  text-center">{{ i + 1 }} </div>
-                    <div class="col col-md-4 text-left"><strong>{{ food.food_name }} </strong></div>
+                    <div class="col col-md-4 text-left"><strong>{{ food.full_food_name }} </strong></div>
                     <div class="col col-md-3 text-left">ຈຳນວນ <strong>{{ food.quantity }}</strong> </div>
                     <div class="col col-md-4 text-left noteColor h4" *ngIf="food.note != 'undefined'"><span class="note-div">{{
                         food.note }}</span></div>

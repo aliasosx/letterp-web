@@ -40,6 +40,8 @@ export class PaymentConfirmComponent implements OnInit {
     this.orderDetail = item;
     this.received = this.data.grandtotal;
 
+
+
     item.forEach(element => {
       console.log(JSON.parse(element));
       let food = JSON.parse(element).food;
