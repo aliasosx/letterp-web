@@ -16,6 +16,11 @@
     <div class="row mr-sm-2 right-div">
       logged in as {{ authData.username }}
       <span>
+        <i class="material-icons icon-space" (click)="updatePassword()">
+          verified_user
+        </i>
+      </span>
+      <span>
         <i class="material-icons icon-space" (click)="logout()">
           exit_to_app
         </i>
