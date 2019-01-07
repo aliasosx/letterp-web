@@ -190,9 +190,9 @@ export class DataServiceService {
       return photo;
     });
   }
-  getTicketsInQ(): Promise<any> {
+  getTicketsInQ(kitchenId): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.get(this.url + 'kitchenorders', this.httpOptions).subscribe(res => {
+      this.http.get(this.url + 'kitchenordersByKid/' + kitchenId, this.httpOptions).subscribe(res => {
         resolve(res);
       });
     });
@@ -236,6 +236,14 @@ export class DataServiceService {
   updateUserPassword(id, data): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.put(this.url + 'changepassword/' + id, data, this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
+  getKitchenIdByUser(id) {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url + 'kitchenIdByUser/' + id, this.httpOptions).subscribe(res => {
+        console.log(res);
         resolve(res);
       });
     });

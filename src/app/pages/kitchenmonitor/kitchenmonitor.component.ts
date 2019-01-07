@@ -3,6 +3,7 @@ import { AuthServiceService } from './../../cores/auth-service.service';
 import { Component, OnInit } from '@angular/core';
 import { from } from 'rxjs';
 import { groupBy, mergeMap, toArray, map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 declare var $;
 
@@ -13,19 +14,25 @@ declare var $;
 })
 export class KitchenmonitorComponent implements OnInit {
 
-  constructor(private auth: AuthServiceService, private dataService: DataServiceService) {
+  constructor(private auth: AuthServiceService, private dataService: DataServiceService, private route: Router) {
+    let token = localStorage.getItem('abcd');
+    if (!token) { route.navigateByUrl('/') }
+    this.getUserInfo();
     setInterval(() => {
       this.getKitchenMon();
     }, 5000);
   }
+  token = localStorage.getItem('abcd');
   orders: any;
   ticketQ: any;
   order_tracks: any;
+  userInfo: any;
+  kitchenId: any;
   ngOnInit() {
     this.getKitchenMon();
   }
   getKitchenMon() {
-    this.dataService.getTicketsInQ().then(kitchen => {
+    this.dataService.getTicketsInQ(this.kitchenId[0].kitchenId).then(kitchen => {
       this.ticketQ = kitchen;
       this.dataPresentation(kitchen);
       //console.log(kitchen);
@@ -72,6 +79,15 @@ export class KitchenmonitorComponent implements OnInit {
     //console.log(h + ':' + m + ':' + s)
 
     return h + ':' + m + ':' + s;
+  }
+  async getUserInfo() {
+    const c = await this.auth.tokenVerify(this.token).then(res => this.userInfo = res);
+    const a = await this.getKitchenId();
+  }
+  async getKitchenId() {
+    const c = await this.dataService.getKitchenIdByUser(this.userInfo['id']).then(kid => {
+      this.kitchenId = kid;
+    })
   }
 
 }
