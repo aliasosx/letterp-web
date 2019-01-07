@@ -20,7 +20,7 @@ export class KitchenmonitorComponent implements OnInit {
     this.getUserInfo();
     setInterval(() => {
       this.getKitchenMon();
-    }, 5000);
+    }, 3000);
   }
   token = localStorage.getItem('abcd');
   orders: any;
