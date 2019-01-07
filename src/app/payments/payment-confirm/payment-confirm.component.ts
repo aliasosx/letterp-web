@@ -123,7 +123,7 @@ export class PaymentConfirmComponent implements OnInit {
 
     if (this.ticket_number) {
       let printData = {
-        "staff": "test01",
+        "staff": this.data.user['fullname'],
         "ticket": this.ticket_number,
         "terminal": "01",
         "items": this.items_Print,

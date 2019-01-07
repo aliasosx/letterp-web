@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card card-main">
   <div class="card-header">
     ລາຍການອາຫານທັງໝົດຂອງ Q : {{ order.tick_number }}
   </div>
@@ -19,8 +19,8 @@
       </div>
       <div class="col col-md-7">
         <ul class="list-group">
-          <li class="list-group-item" *ngFor="let item of orderDetails"><a class="h5 food-name">{{ item.food_name }}</a><a
-              class="h5 float-right"> x {{
+          <li class="list-group-item" *ngFor="let item of orderDetails"><a class="h5 food-name">{{ item.full_food_name
+              }}</a><a class="h5 float-right"> x {{
               item.quantity }}</a></li>
         </ul>
       </div>

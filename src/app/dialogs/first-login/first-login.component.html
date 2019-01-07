@@ -1,0 +1,25 @@
+<div class="card">
+  <div class="card-header">
+    First Login Perform
+  </div>
+  <div class="card-body">
+    <form [formGroup]="passwordChangeForm">
+      <div [ngClass]="alertTxt" class="alert alert-danger" role="alert">
+        ລະຫັດຜ່ານບໍ່ຄືກັນ
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputEmail1">ລະຫັດຜ່ານ</label>
+        <input type="password" formControlName="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+          placeholder="password" (keyup)="checkMatchingPassword($event.target.value)">
+
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">ລະຫັດຜ່ານ ອິກຄັ້ງໜື່ງ</label>
+        <input type="password" formControlName="repassword" class="form-control" id="exampleInputPassword1" placeholder="Re-Password"
+          (keyup)="checkMatchingPassword($event.target.value)">
+      </div>
+      <button type="submit" [disabled]="buttonDisable" class="btn btn-lg btn-block btn-outline-danger" (click)="processUpdate()">Submit</button>
+    </form>
+  </div>
+</div>

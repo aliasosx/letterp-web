@@ -26,6 +26,13 @@ export class DataServiceService {
       });
     });
   }
+  getFirstLogin(id): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url + 'firstlogin/' + id, this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
   getUserInfomation(id): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.get(this.url + 'users/' + id, this.httpOptions).subscribe(res => {
@@ -222,6 +229,13 @@ export class DataServiceService {
   getTicketNumber(id): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.get(this.url + 'ticket/' + id, this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
+  updateUserPassword(id, data): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.put(this.url + 'changepassword/' + id, data, this.httpOptions).subscribe(res => {
         resolve(res);
       });
     });

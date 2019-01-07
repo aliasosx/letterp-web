@@ -7,8 +7,6 @@ import { Item } from 'src/app/models/Item';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PaymentConfirmComponent } from 'src/app/payments/payment-confirm/payment-confirm.component';
 
-
-
 @Component({
   selector: 'app-pos',
   templateUrl: './pos.component.html',
@@ -44,6 +42,7 @@ export class PosComponent implements OnInit {
   ngOnInit() {
     this.auth.tokenVerify(localStorage.getItem('abcd')).then((user) => {
       this.userInfo = user;
+      console.log(this.userInfo);
     });
   }
   async loadFoodType() {
