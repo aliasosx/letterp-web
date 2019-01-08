@@ -27,5 +27,7 @@ export class TransactionDetailsComponent implements OnInit {
     });
   }
 
-
+  takeit(e) {
+    console.log(e);
+  }
 }

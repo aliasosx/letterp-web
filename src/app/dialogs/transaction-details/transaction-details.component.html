@@ -19,9 +19,11 @@
       </div>
       <div class="col col-md-7">
         <ul class="list-group">
-          <li class="list-group-item" *ngFor="let item of orderDetails"><a class="h5 food-name">{{ item.full_food_name
-              }}</a><a class="h5 float-right"> x {{
-              item.quantity }}</a></li>
+          <li class="list-group-item" *ngFor="let item of orderDetails">
+            <a class="h5 food-name">{{ item.full_food_name }}</a>
+            <a class="h5 float-center"> x {{ item.quantity }}</a>
+            <button type="button" class="btn btn-success float-right" id="btnRecieved" (click)="takeit(item.id)">ຮັບແລ້ວ</button>
+          </li>
         </ul>
       </div>
     </div>
