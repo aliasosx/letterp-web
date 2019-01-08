@@ -18,6 +18,8 @@ export class CommonDialogComponent implements OnInit {
   }
   @Input() form_type: any;
 
+  saveButtonEnable = true;
+
   KitchenForm: FormGroup;
   FoodInfo: FormGroup;
   foodtypes: any;
@@ -28,6 +30,8 @@ export class CommonDialogComponent implements OnInit {
   subFoods: any;
 
   ngOnInit() {
+    if (this.form_type.form == 'parentalfood') { this.saveButtonEnable = true }
+    console.log(this.form_type.form);
     // initialize kitchen form
     this.KitchenForm = new FormGroup({
       'kitchen_code': new FormControl(),

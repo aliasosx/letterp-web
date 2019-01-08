@@ -262,4 +262,12 @@ export class DataServiceService {
       });
     });
   }
+
+  getTopFood(topNumber): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url + 'reporttopfood/' + topNumber, this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
 }
