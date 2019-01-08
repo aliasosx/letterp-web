@@ -18,7 +18,7 @@ export class CommonDialogComponent implements OnInit {
   }
   @Input() form_type: any;
 
-  saveButtonEnable = true;
+  saveButtonEnable = "";
 
   KitchenForm: FormGroup;
   FoodInfo: FormGroup;
@@ -30,7 +30,10 @@ export class CommonDialogComponent implements OnInit {
   subFoods: any;
 
   ngOnInit() {
-    if (this.form_type.form == 'parentalfood') { this.saveButtonEnable = true }
+    if (this.form_type.form == 'parentalfood' || this.form_type.form == 'addnote') { this.saveButtonEnable = "hidden" }
+
+
+
     console.log(this.form_type.form);
     // initialize kitchen form
     this.KitchenForm = new FormGroup({

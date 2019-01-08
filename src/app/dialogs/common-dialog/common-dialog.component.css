@@ -5,3 +5,6 @@
   background-color: black;
   color: white;
 }
+.hidden {
+  display: none;
+}
