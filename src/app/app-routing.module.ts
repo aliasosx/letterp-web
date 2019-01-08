@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { FoodsComponent } from './pages/foods/foods.component';
 import { PosComponent } from './pages/pos/pos.component';
 import { KitchenmonitorComponent } from './pages/kitchenmonitor/kitchenmonitor.component';
+import { ReportsComponent } from './pages/reports/reports.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'food', component: FoodsComponent },
   { path: 'pos', component: PosComponent },
   { path: 'orders', component: OrdermonitorComponent },
-  { path: 'kitchenmon', component: KitchenmonitorComponent }
+  { path: 'kitchenmon', component: KitchenmonitorComponent },
+  { path: 'report', component: ReportsComponent }
 ];
 
 @NgModule({

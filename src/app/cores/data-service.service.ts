@@ -248,4 +248,18 @@ export class DataServiceService {
       });
     });
   }
+  getReportByKitchen(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url + 'reportbykitchens', this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
+  getReportByFoodType(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url + 'reportbyfoodType', this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
 }

@@ -20,6 +20,7 @@ import { OrdermonitorComponent } from './pages/ordermonitor/ordermonitor.compone
 import { KitchenmonitorComponent } from './pages/kitchenmonitor/kitchenmonitor.component';
 import { TransactionDetailsComponent } from './dialogs/transaction-details/transaction-details.component';
 import { FirstLoginComponent } from './dialogs/first-login/first-login.component';
+import { ReportsComponent } from './pages/reports/reports.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { FirstLoginComponent } from './dialogs/first-login/first-login.component
     KitchenmonitorComponent,
     TransactionDetailsComponent,
     FirstLoginComponent,
+    ReportsComponent,
 
   ],
   imports: [
