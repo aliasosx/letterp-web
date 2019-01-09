@@ -21,6 +21,7 @@ import { KitchenmonitorComponent } from './pages/kitchenmonitor/kitchenmonitor.c
 import { TransactionDetailsComponent } from './dialogs/transaction-details/transaction-details.component';
 import { FirstLoginComponent } from './dialogs/first-login/first-login.component';
 import { ReportsComponent } from './pages/reports/reports.component';
+import { UiSwitchModule } from 'ngx-ui-switch';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { ReportsComponent } from './pages/reports/reports.component';
     FormsModule,
     NgbModalModule,
     NgbDatepickerModule,
+    UiSwitchModule,
 
   ],
   entryComponents: [

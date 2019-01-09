@@ -20,7 +20,7 @@
             <tbody>
               <tr *ngFor="let order of orderTracks ; index as i">
                 <th class="text-center">
-                  <h2><span class="badge badge-secondary">{{order.tick_number}}</span></h2>
+                  <h2><span class="badge badge-secondary dark">{{order.tick_number}}</span></h2>
                 </th>
                 <td class="text-center">{{ order.order_datetime | date: 'HH:mm:ss' }}</td>
                 <td class="text-center">{{ order.time_passed | date: 'HH:mm:ss' }}</td>

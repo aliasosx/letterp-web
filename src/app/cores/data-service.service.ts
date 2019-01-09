@@ -250,14 +250,14 @@ export class DataServiceService {
   }
   getReportByKitchen(dt): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.get(this.url + 'reportbykitchens/' + dt, this.httpOptions).subscribe(res => {
+      this.http.post(this.url + 'reportbykitchens', dt, this.httpOptions).subscribe(res => {
         resolve(res);
       });
     });
   }
   getReportByFoodType(dt): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.get(this.url + 'reportbyfoodType/' + dt, this.httpOptions).subscribe(res => {
+      this.http.post(this.url + 'reportbyfoodType', dt, this.httpOptions).subscribe(res => {
         resolve(res);
       });
     });
@@ -265,7 +265,14 @@ export class DataServiceService {
 
   getTopFood(dt): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.get(this.url + 'reporttopfood/' + dt, this.httpOptions).subscribe(res => {
+      this.http.post(this.url + 'reporttopfood', dt, this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
+  updateTransactionStatus(status): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.url + 'maketransactionfinish', status, this.httpOptions).subscribe(res => {
         resolve(res);
       });
     });

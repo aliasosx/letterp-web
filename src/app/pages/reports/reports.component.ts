@@ -10,46 +10,63 @@ import { DatePipe } from '@angular/common';
 export class ReportsComponent implements OnInit {
 
   constructor(private dataService: DataServiceService) {
-    this.loadReportbyKitchen();
-    this.loadReportByFoodType();
-    this.loadTopFood();
+    this.loadKitchen();
   }
+
   reportByKitchen: any;
   resportByFoodType: any;
   date = new Date();
   DatepickerModel: any;
   dateSelected: string;
   topFoods: any;
+  kitchens: any;
+  kitchenId: number;
+  params: any;
+  showReport = 'hidden';
+  noData = 'card';
+
   ngOnInit() {
 
   }
   async loadReportbyKitchen() {
-    const c = await this.dataService.getReportByKitchen(this.dateSelected).then(res => {
-      //console.log(res);
+    const c = await this.dataService.getReportByKitchen(this.params).then(res => {
+      console.log(res);
       this.reportByKitchen = res;
     });
   }
   async loadReportByFoodType() {
-    const c = await this.dataService.getReportByFoodType(this.dateSelected).then(res => {
+    const c = await this.dataService.getReportByFoodType(this.params).then(res => {
       //console.log(res);
       this.resportByFoodType = res;
     });
   }
   async loadTopFood() {
-    const c = await this.dataService.getTopFood(this.dateSelected).then(res => {
+    const c = await this.dataService.getTopFood(this.params).then(res => {
       //console.log(res);
       this.topFoods = res;
     });
   }
   async processReport() {
-    console.log(this.DatepickerModel);
+    //console.log(this.DatepickerModel);
     let reportDate = this.DatepickerModel.year + '-' + this.DatepickerModel.month + '-' + this.DatepickerModel.day;
     let datePipe = new DatePipe('en-US');
     let newDate = datePipe.transform(reportDate, 'yyyy-MM-dd');
     this.dateSelected = newDate;
-    console.log(newDate);
+    this.params = {
+      'dt': this.dateSelected,
+      'kitchen': this.kitchenId
+    }
     this.loadReportbyKitchen();
     this.loadReportByFoodType();
     this.loadTopFood();
+    this.showReport = 'card';
+    this.noData = 'hidden';
+  }
+  async loadKitchen() {
+    const k = await this.dataService.getKitchen().then(kitchens => this.kitchens = kitchens);
+  }
+  async kitchenSelect(id) {
+    this.kitchenId = id;
+    this.processReport();
   }
 }

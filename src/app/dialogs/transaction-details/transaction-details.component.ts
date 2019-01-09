@@ -20,14 +20,20 @@ export class TransactionDetailsComponent implements OnInit {
     this.getOrderDetailByOrderId();
   }
   getOrderDetailByOrderId() {
-
     this.dataService.getTransactionByTicketId(this.ticketId).then(kitchen => {
       this.orderDetails = kitchen;
       console.log(kitchen);
     });
   }
 
-  takeit(e) {
-    console.log(e);
+  async takeit(e, id) {
+    let status = {
+      'orderdetailId': id,
+      'value': e
+    };
+    const c = await this.dataService.updateTransactionStatus(status).then(res => {
+
+    })
+
   }
 }

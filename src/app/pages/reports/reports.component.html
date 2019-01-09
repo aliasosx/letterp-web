@@ -3,30 +3,36 @@
     ສະຫຼຸບຍອດຂາຍຂອງວັນທີ {{ date | date: 'dd-MM-yyyy'}}
   </div>
   <div class="card-body">
-
-    <div class="card">
-      <div class="card-body">
-        <form class="form-inline">
-          <div class="form-group">
-            <div class="input-group">
-              <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="DatepickerModel"
-                ngbDatepicker #d="ngbDatepicker">
-              <div class="input-group-append">
-                <button class="btn btn-outline-secondary glyphicon glyphicon-calendar" (click)="d.toggle()" type="button"></button>
-                <button class="btn btn-outline-primary" (click)="processReport()">Report</button>
-              </div>
-
-            </div>
-          </div>
-        </form>
-
-      </div>
-    </div>
-
     <div class="card">
       <div class="card-body">
         <div class="row">
-          <div class="col col-md-3">
+          <form class="form-inline">
+            <div class="form-group">
+              <div class="input-group">
+                <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="DatepickerModel"
+                  ngbDatepicker #d="ngbDatepicker">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                    <img src="../../../assets/images/calendar.svg">
+                  </button>
+                </div>
+              </div>
+              <div class="input-group kitchen-div">
+                <select class="form-control" id="kitchenSelect" (change)="kitchenSelect($event.target.value)">
+                  <option disabled value="-1">------------</option>
+                  <option value="{{kitchen.id}}" *ngFor="let kitchen of kitchens">{{ kitchen.kitchen_name }}</option>
+                </select>
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+    <div [ngClass]="showReport">
+      <div class="card-body">
+        <div class="row">
+          <div class="col col-md-4">
             <div class="card shadow-sm  rounded">
               <div class="card-header">
                 ຍອດຂາຍ ແບ່ງຕາມຄົວ
@@ -53,7 +59,7 @@
               </div>
             </div>
           </div>
-          <div class="col col-md-3">
+          <div class="col col-md-4">
             <div class="card shadow-sm rounded">
               <div class="card-header">
                 ຍອດຂາຍ ແບ່ງຕາມ ປະເພດອາຫານ
@@ -64,6 +70,7 @@
                     <tr>
                       <th scope="col">ປະເພດອາຫານ</th>
                       <th class="text-right" scope="col">ຈຳນວນ</th>
+                      <th class="text-right" scope="col">ທຶນ</th>
                       <th class="text-right" scope="col">ຍອດຂາຍ</th>
                     </tr>
                   </thead>
@@ -72,16 +79,17 @@
                       <th class="text-left">{{ item.food_type_desc_la }}</th>
                       <td class="text-right">{{ item.count }}</td>
                       <td class="text-right">{{ item.cost | number}}</td>
+                      <td class="text-right">{{ item.total | number}}</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
           </div>
-          <div class="col col-md-3">
+          <div class="col col-md-4">
             <div class="card shadow-sm rounded">
               <div class="card-header">
-                ອາຫານທີ່ຍອດຈຳນວນການຂາຍສູງສຸດ 10 ອັນດັບ
+                ອາຫານທີ່ຍອດຈຳນວນການຂາຍສູງສຸດ
               </div>
               <div class="card-body">
                 <table class="table">
@@ -89,6 +97,7 @@
                     <tr>
                       <th scope="col">ປະເພດອາຫານ</th>
                       <th class="text-right" scope="col">ຈຳນວນ</th>
+                      <th class="text-right" scope="col">ທຶນ</th>
                       <th class="text-right" scope="col">ຍອດຂາຍ</th>
                     </tr>
                   </thead>
@@ -97,16 +106,22 @@
                       <th class="text-left">{{ item.food_name }}</th>
                       <td class="text-right">{{ item.count }}</td>
                       <td class="text-right">{{ item.cost | number}}</td>
+                      <td class="text-right">{{ item.total | number}}</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
           </div>
-          <div class="col col-md-3"></div>
         </div>
       </div>
     </div>
-
+    <div [ngClass]="noData">
+      <div class="card-bod">
+        <div class="display-3 text-center" style="color:dimgrey">
+          No Data Available
+        </div>
+      </div>
+    </div>
   </div>
 </div>

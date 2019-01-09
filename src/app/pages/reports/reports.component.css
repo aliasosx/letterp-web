@@ -6,3 +6,10 @@
   background-color: black;
   color: white;
 }
+.kitchen-div {
+  margin-left: 5px;
+  min-width: 200px;
+}
+.hidden {
+  display: none;
+}

@@ -15,20 +15,21 @@
 
 
         </div>
-        <span>{{ order.order_datetime | date: 'HH:mm:ss'}}</span>
+        <span class="h4">{{ order.order_datetime | date: 'HH:mm:ss'}}</span>
       </div>
       <div class="col col-md-7">
+
         <ul class="list-group">
-          <li class="list-group-item" *ngFor="let item of orderDetails">
-            <a class="h5 food-name">{{ item.full_food_name }}</a>
+          <li class="list-group-item" *ngFor="let item of orderDetails; index as i">
+            <a class="h5 food-name">{{i + 1}}. {{ item.full_food_name }}</a>
             <a class="h5 float-center"> x {{ item.quantity }}</a>
-            <button type="button" class="btn btn-success float-right" id="btnRecieved" (click)="takeit(item.id)">ຮັບແລ້ວ</button>
+            <ui-switch class="float-right" (valueChange)="takeit($event, item.detailId)"></ui-switch>
           </li>
         </ul>
       </div>
     </div>
   </div>
   <div class="card-footer">
-    <a>ກວດສອບລາຍການໃຫ້ຖືກຕ້ອງກ່ອນມອບໃຫ້ລູກຄ້າ</a>
+    <a>*ກວດສອບລາຍການໃຫ້ຖືກຕ້ອງກ່ອນມອບໃຫ້ລູກຄ້າ</a>
   </div>
 </div>
