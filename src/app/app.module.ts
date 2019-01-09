@@ -11,7 +11,7 @@ import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { FoodsComponent } from './pages/foods/foods.component';
 import { UsersComponent } from './pages/users/users.component';
 import { PosComponent } from './pages/pos/pos.component';
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalModule, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { FoodtypeComponent } from './dialogs/foodtype/foodtype.component';
 import { CommonDialogComponent } from './dialogs/common-dialog/common-dialog.component';
 import { PaymentConfirmComponent } from './payments/payment-confirm/payment-confirm.component';
@@ -49,6 +49,7 @@ import { ReportsComponent } from './pages/reports/reports.component';
     ReactiveFormsModule,
     FormsModule,
     NgbModalModule,
+    NgbDatepickerModule,
 
   ],
   entryComponents: [

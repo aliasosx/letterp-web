@@ -6,6 +6,25 @@
 
     <div class="card">
       <div class="card-body">
+        <form class="form-inline">
+          <div class="form-group">
+            <div class="input-group">
+              <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="DatepickerModel"
+                ngbDatepicker #d="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary glyphicon glyphicon-calendar" (click)="d.toggle()" type="button"></button>
+                <button class="btn btn-outline-primary" (click)="processReport()">Report</button>
+              </div>
+
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
         <div class="row">
           <div class="col col-md-3">
             <div class="card shadow-sm  rounded">
