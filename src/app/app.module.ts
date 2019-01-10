@@ -23,6 +23,7 @@ import { FirstLoginComponent } from './dialogs/first-login/first-login.component
 import { ReportsComponent } from './pages/reports/reports.component';
 import { UiSwitchModule } from 'ngx-ui-switch';
 import { CashdrawerManagerComponent } from './pages/cashdrawer-manager/cashdrawer-manager.component';
+import { KitchenReportsComponent } from './pages/kitchen-reports/kitchen-reports.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { CashdrawerManagerComponent } from './pages/cashdrawer-manager/cashdrawe
     FirstLoginComponent,
     ReportsComponent,
     CashdrawerManagerComponent,
+    KitchenReportsComponent,
 
   ],
   imports: [

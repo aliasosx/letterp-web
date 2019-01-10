@@ -1,0 +1,118 @@
+<div class="card shadow-sm rounded">
+  <div class="card-header">
+    ສະຫຼຸບຍອດຂາຍຂອງວັນທີ {{ date | date: 'dd-MM-yyyy'}}
+  </div>
+  <div class="card-body">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <form class="form-inline">
+            <div class="form-group">
+              <div class="input-group">
+                <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="DatepickerModel"
+                  ngbDatepicker #d="ngbDatepicker">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                    <img src="../../../assets/images/calendar.svg">
+                  </button>
+                </div>
+              </div>
+              <div class="input-group kitchen-div">
+                <button type="button" class="btn btn-lg btn-primary" (click)="kitchenSelect()">Report</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+    <div [ngClass]="showReport">
+      <div class="card-body">
+        <div class="row">
+          <div class="col col-md-4">
+            <div class="card shadow-sm  rounded">
+              <div class="card-header">
+                ຍອດຂາຍ ແບ່ງຕາມຄົວ
+              </div>
+              <div class="card-bod">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">ຄົວ</th>
+                      <th class="text-right" scope="col">ຈຳນວນ</th>
+                      <th class="text-right" scope="col">ລວມ</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of reportByKitchen">
+                      <th class="text-left">{{ item.kitchen_name }}</th>
+                      <td class="text-right">{{ item.count }}</td>
+                      <td class="text-right">{{ item.cost | number}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="col col-md-4">
+            <div class="card shadow-sm rounded">
+              <div class="card-header">
+                ຍອດຂາຍ ແບ່ງຕາມ ປະເພດອາຫານ
+              </div>
+              <div class="card-body">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">ປະເພດອາຫານ</th>
+                      <th class="text-right" scope="col">ຈຳນວນ</th>
+                      <th class="text-right" scope="col">ທຶນ</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of resportByFoodType">
+                      <th class="text-left">{{ item.food_type_desc_la }}</th>
+                      <td class="text-right">{{ item.count }}</td>
+                      <td class="text-right">{{ item.cost | number}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="col col-md-4">
+            <div class="card shadow-sm rounded">
+              <div class="card-header">
+                ອາຫານທີ່ຍອດຈຳນວນການຂາຍສູງສຸດ
+              </div>
+              <div class="card-body">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">ປະເພດອາຫານ</th>
+                      <th class="text-right" scope="col">ຈຳນວນ</th>
+                      <th class="text-right" scope="col">ທຶນ</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of topFoods">
+                      <th class="text-left">{{ item.food_name }}</th>
+                      <td class="text-right">{{ item.count }}</td>
+                      <td class="text-right">{{ item.cost | number}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div [ngClass]="noData">
+      <div class="card-bod">
+        <div class="display-3 text-center" style="color:dimgrey">
+          No Data Available
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

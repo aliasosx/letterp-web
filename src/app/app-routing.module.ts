@@ -8,6 +8,7 @@ import { PosComponent } from './pages/pos/pos.component';
 import { KitchenmonitorComponent } from './pages/kitchenmonitor/kitchenmonitor.component';
 import { ReportsComponent } from './pages/reports/reports.component';
 import { CashdrawerManagerComponent } from './pages/cashdrawer-manager/cashdrawer-manager.component';
+import { KitchenReportsComponent } from './pages/kitchen-reports/kitchen-reports.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -16,8 +17,9 @@ const routes: Routes = [
   { path: 'pos', component: PosComponent },
   { path: 'orders', component: OrdermonitorComponent },
   { path: 'kitchenmon', component: KitchenmonitorComponent },
-  { path: 'report', component: ReportsComponent },
-  { path: 'cashmanager', component: CashdrawerManagerComponent }
+  { path: 'adminreport', component: ReportsComponent },
+  { path: 'cashmanager', component: CashdrawerManagerComponent },
+  { path: 'report', component: KitchenReportsComponent }
 ];
 
 @NgModule({
