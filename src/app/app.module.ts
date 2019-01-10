@@ -22,6 +22,7 @@ import { TransactionDetailsComponent } from './dialogs/transaction-details/trans
 import { FirstLoginComponent } from './dialogs/first-login/first-login.component';
 import { ReportsComponent } from './pages/reports/reports.component';
 import { UiSwitchModule } from 'ngx-ui-switch';
+import { CashdrawerManagerComponent } from './pages/cashdrawer-manager/cashdrawer-manager.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { UiSwitchModule } from 'ngx-ui-switch';
     TransactionDetailsComponent,
     FirstLoginComponent,
     ReportsComponent,
+    CashdrawerManagerComponent,
 
   ],
   imports: [
