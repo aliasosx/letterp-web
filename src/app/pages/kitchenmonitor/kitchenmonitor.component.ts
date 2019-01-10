@@ -61,7 +61,7 @@ export class KitchenmonitorComponent implements OnInit {
     this.order_tracks = {
       'order': this.orders
     };
-    console.log(this.order_tracks);
+    //console.log(this.order_tracks);
 
 
   }
