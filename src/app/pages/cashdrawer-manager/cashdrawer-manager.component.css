@@ -1,0 +1,12 @@
+* {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, 'phetsarath ot';
+}
+.card {
+  margin-top: 5px;
+}
+.card-header {
+  color: white;
+}
+.hidden {
+  display: none;
+}
