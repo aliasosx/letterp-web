@@ -29,19 +29,19 @@ export class ReportsComponent implements OnInit {
 
   }
   async loadReportbyKitchen() {
-    const c = await this.dataService.getReportByKitchen(this.params).then(res => {
+    const c = await this.dataService.getAdminReportByKitchen(this.params).then(res => {
       console.log(res);
       this.reportByKitchen = res;
     });
   }
   async loadReportByFoodType() {
-    const c = await this.dataService.getReportByFoodType(this.params).then(res => {
+    const c = await this.dataService.getAdminReportByFoodType(this.params).then(res => {
       //console.log(res);
       this.resportByFoodType = res;
     });
   }
   async loadTopFood() {
-    const c = await this.dataService.getTopFood(this.params).then(res => {
+    const c = await this.dataService.getAdminTopFood(this.params).then(res => {
       //console.log(res);
       this.topFoods = res;
     });
@@ -65,8 +65,11 @@ export class ReportsComponent implements OnInit {
   async loadKitchen() {
     const k = await this.dataService.getKitchen().then(kitchens => this.kitchens = kitchens);
   }
-  async kitchenSelect(id) {
-    this.kitchenId = id;
+  async kitchenSelect() {
+    this.kitchenId = 0;
     this.processReport();
+  }
+  async runnigSummation() {
+
   }
 }

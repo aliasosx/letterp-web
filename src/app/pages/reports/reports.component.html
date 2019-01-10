@@ -18,10 +18,7 @@
                 </div>
               </div>
               <div class="input-group kitchen-div">
-                <select class="form-control" id="kitchenSelect" (change)="kitchenSelect($event.target.value)">
-                  <option disabled value="-1">------------</option>
-                  <option value="{{kitchen.id}}" *ngFor="let kitchen of kitchens">{{ kitchen.kitchen_name }}</option>
-                </select>
+                <button type="button" (click)="kitchenSelect()" class="btn btn-lg btn-primary">Report</button>
               </div>
             </div>
           </form>
@@ -55,6 +52,12 @@
                       <td class="text-right">{{ item.total | number}}</td>
                     </tr>
                   </tbody>
+                  <tfoot>
+                    <tr>
+                      <td colspan="2">ລວມ</td>
+                      <td class="text-right"></td>
+                    </tr>
+                  </tfoot>
                 </table>
               </div>
             </div>

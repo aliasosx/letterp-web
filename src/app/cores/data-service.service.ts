@@ -248,6 +248,29 @@ export class DataServiceService {
       });
     });
   }
+  getAdminReportByKitchen(dt): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.url + 'adminreportbykitchens', dt, this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
+  getAdminReportByFoodType(dt): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.url + 'adminreportbyfoodType', dt, this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
+
+  getAdminTopFood(dt): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.url + 'adminreporttopfood', dt, this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
+
   getReportByKitchen(dt): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.post(this.url + 'reportbykitchens', dt, this.httpOptions).subscribe(res => {
@@ -270,6 +293,7 @@ export class DataServiceService {
       });
     });
   }
+
   updateTransactionStatus(status): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.post(this.url + 'maketransactionfinish', status, this.httpOptions).subscribe(res => {
