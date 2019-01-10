@@ -12,5 +12,8 @@
   margin-right: 10px;
 }
 .noteColor {
-  color: orange;
+  color: rgb(252, 14, 65);
+}
+.checkedImg {
+max-width: 20px;
 }

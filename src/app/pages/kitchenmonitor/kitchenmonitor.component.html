@@ -18,14 +18,18 @@
               <ul class="list-group" *ngFor="let food of ticket ; index as i">
                 <li class="list-group-item bg-dark">
                   <div class="row">
-                    <div class="col col-md-1  text-center">{{ i + 1 }} </div>
+                    <div class="col col-md-1 text-center">{{ i + 1 }} </div>
                     <div class="col col-md-4 text-left"><strong>{{ food.full_food_name }} </strong></div>
                     <div class="col col-md-3 text-left">ຈຳນວນ <strong>{{ food.quantity }}</strong> </div>
-                    <div class="col col-md-4 text-left noteColor h4" *ngIf="food.note != 'undefined'"><span class="note-div">{{
-                        food.note }}</span></div>
+                    <div class="col col-md-3 text-left noteColor h4" *ngIf="food.note != 'undefined'">
+                      <span class="note-div">{{ food.note }}</span>
+                    </div>
+                    <div class="col col-md-1"><span *ngIf="food.done == 1"><img class="checkedImg" src="../../../assets/images/check.png"></span></div>
                   </div>
                 </li>
+
               </ul>
+
             </div>
           </div>
           <div class="col col-md-4">

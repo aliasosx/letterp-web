@@ -22,8 +22,12 @@
         <ul class="list-group">
           <li class="list-group-item" *ngFor="let item of orderDetails; index as i">
             <a class="h5 food-name">{{i + 1}}. {{ item.full_food_name }}</a>
-            <a class="h5 float-center"> x {{ item.quantity }}</a>
-            <ui-switch class="float-right" (valueChange)="takeit($event, item.detailId)"></ui-switch>
+            <a class="h5 float-center"> x {{ item.quantity }} {{ item.done }}</a>
+            <ui-switch class="float-right" (valueChange)="takeit($event, item.detailId)" *ngIf="item.done == 'true';else noCheck"
+              checked></ui-switch>
+            <ng-template #noCheck>
+              <ui-switch class="float-right" (valueChange)="takeit($event, item.detailId)"></ui-switch>
+            </ng-template>
           </li>
         </ul>
       </div>
