@@ -13,3 +13,6 @@
 .hidden {
   display: none;
 }
+.time-div {
+  height: 50px;
+}

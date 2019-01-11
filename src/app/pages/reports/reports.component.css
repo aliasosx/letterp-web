@@ -13,3 +13,21 @@
 .hidden {
   display: none;
 }
+.card-summary {
+  margin: 10px;
+  max-width: 300px;
+}
+.header-report {
+margin-left: 10px;
+}
+.time-div {
+height: 50px;
+}
+.user-div {
+min-width: 300px;
+}
+.reportByfood-div {
+  position: relative;
+  max-height: 600px;
+  overflow: auto;
+}

@@ -271,6 +271,14 @@ export class DataServiceService {
     });
   }
 
+  getAdminRevenueByUser(dt): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.url + 'adminreportbyuser', dt, this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
+
   getReportByKitchen(dt): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.post(this.url + 'reportbykitchens', dt, this.httpOptions).subscribe(res => {

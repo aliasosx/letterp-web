@@ -16,27 +16,33 @@ export class ReportsComponent implements OnInit {
   reportByKitchen: any;
   resportByFoodType: any;
   date = new Date();
-  DatepickerModel: any;
-  dateSelected: string;
+  StartDatepickerModel: any;
+  EndDatepickerModel: any;
+  dateSelectedStart: string;
+  dateSelectedEnd: string;
   topFoods: any;
   kitchens: any;
   kitchenId: number;
   params: any;
   showReport = 'hidden';
   noData = 'card';
-
+  grandTotal: number = 0;
+  costTotal: number = 0;
+  reportUsers: any;
   ngOnInit() {
 
   }
   async loadReportbyKitchen() {
     const c = await this.dataService.getAdminReportByKitchen(this.params).then(res => {
-      console.log(res);
+      //console.log(res);
       this.reportByKitchen = res;
+      this.runnigSummation();
+
     });
   }
   async loadReportByFoodType() {
     const c = await this.dataService.getAdminReportByFoodType(this.params).then(res => {
-      //console.log(res);
+      console.log(res);
       this.resportByFoodType = res;
     });
   }
@@ -46,19 +52,30 @@ export class ReportsComponent implements OnInit {
       this.topFoods = res;
     });
   }
+  async loadReportbyUser() {
+    const c = await this.dataService.getAdminRevenueByUser(this.params).then(res => {
+      //console.log(res);
+      this.reportUsers = res;
+    });
+  }
   async processReport() {
     //console.log(this.DatepickerModel);
-    let reportDate = this.DatepickerModel.year + '-' + this.DatepickerModel.month + '-' + this.DatepickerModel.day;
+    let reportDateStart = this.StartDatepickerModel.year + '-' + this.StartDatepickerModel.month + '-' + this.StartDatepickerModel.day;
+    let reportEndDate = this.EndDatepickerModel.year + '-' + this.EndDatepickerModel.month + '-' + this.EndDatepickerModel.day;
     let datePipe = new DatePipe('en-US');
-    let newDate = datePipe.transform(reportDate, 'yyyy-MM-dd');
-    this.dateSelected = newDate;
+    let newDateStart = datePipe.transform(reportDateStart, 'yyyy-MM-dd');
+    let newDateEnd = datePipe.transform(reportEndDate, 'yyyy-MM-dd');
+    this.dateSelectedStart = newDateStart;
+    this.dateSelectedEnd = newDateEnd;
     this.params = {
-      'dt': this.dateSelected,
+      'dt': this.dateSelectedStart,
+      'edt': this.dateSelectedEnd,
       'kitchen': this.kitchenId
     }
     this.loadReportbyKitchen();
     this.loadReportByFoodType();
     this.loadTopFood();
+    this.loadReportbyUser();
     this.showReport = 'card';
     this.noData = 'hidden';
   }
@@ -71,5 +88,16 @@ export class ReportsComponent implements OnInit {
   }
   async runnigSummation() {
 
+    if (this.reportByKitchen) {
+      console.log(this.reportByKitchen);
+      this.grandTotal = 0;
+      this.costTotal = 0;
+      const a = await this.reportByKitchen.forEach(element => {
+        //console.log(element);
+        this.grandTotal += parseInt(element['total']);
+        this.costTotal += parseInt(element['cost']);
+      });
+
+    }
   }
 }
