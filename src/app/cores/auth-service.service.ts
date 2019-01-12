@@ -35,6 +35,28 @@ export class AuthServiceService {
       });
     });
   }
+
+  authPassword(username, password): Promise<any> {
+    let logindetail = {
+      "username": username,
+      "password": password
+    }
+    return new Promise((resolve, reject) => {
+      try {
+        this.http.post(this.url + 'auth', logindetail).subscribe(result => {
+          if (result['token']) {
+            //localStorage.setItem('abcd', result['token']);
+            resolve(result);
+          } else {
+            reject('Unauthorized');
+          }
+        });
+      } catch (err) {
+        reject(err);
+      }
+    });
+  }
+
   tokenVerify(token): Promise<any> {
     let tokenToVerify = {
       "token": token

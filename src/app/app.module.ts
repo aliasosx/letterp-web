@@ -24,6 +24,7 @@ import { ReportsComponent } from './pages/reports/reports.component';
 import { UiSwitchModule } from 'ngx-ui-switch';
 import { CashdrawerManagerComponent } from './pages/cashdrawer-manager/cashdrawer-manager.component';
 import { KitchenReportsComponent } from './pages/kitchen-reports/kitchen-reports.component';
+import { PasswordinputComponent } from './dialogs/passwordinput/passwordinput.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { KitchenReportsComponent } from './pages/kitchen-reports/kitchen-reports
     ReportsComponent,
     CashdrawerManagerComponent,
     KitchenReportsComponent,
+    PasswordinputComponent,
 
   ],
   imports: [
@@ -64,6 +66,7 @@ import { KitchenReportsComponent } from './pages/kitchen-reports/kitchen-reports
     PaymentConfirmComponent,
     TransactionDetailsComponent,
     FirstLoginComponent,
+    PasswordinputComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -309,4 +309,34 @@ export class DataServiceService {
       });
     });
   }
+  getCashCurrentStatus(info): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.url + 'getcashloadsByUser', info, this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
+  loadCashDrawer(load): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.url + 'cashloads', load, this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
+  getUsersException(id): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url + 'usersnotin/' + id, this.httpOptions).subscribe(res => {
+        //console.log(res);
+        resolve(res);
+      });
+    });
+  }
+  settlement(userId): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url + 'settle/' + userId, this.httpOptions).subscribe(res => {
+        console.log(res);
+        resolve(res);
+      });
+    });
+  }
 }
