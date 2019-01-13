@@ -50,7 +50,7 @@
               <ul class="list-group">
                 <div class="col item-col">
                   <li *ngFor="let item of items" class="list-group-item">{{ item.food['food_name'] }} X <strong>{{
-                      item.quantity }}</strong> ພິເສດ {{ item.note }}
+                      item.quantity }}</strong> <a class="notediv">{{ item.note }}</a>
                     <div class="float-right">{{ item.food['price'] * item.quantity | number }}
                       <span class="cart-remove-icon" (click)="removeCardItem(item.food['id'])"><img src="../../../assets/images/trash.svg">
                       </span>

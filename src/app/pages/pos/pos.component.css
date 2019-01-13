@@ -86,3 +86,8 @@
   max-height: 100px;
   max-width: 150px;
 }
+.notediv{
+  margin-left: 5px;
+  font-weight: bold;
+  color: red;
+}
