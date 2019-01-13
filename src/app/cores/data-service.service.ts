@@ -347,4 +347,11 @@ export class DataServiceService {
       });
     });
   }
+  noteSuggests(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url + 'notesuggests', this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
 }

@@ -14,6 +14,7 @@ export class CommonDialogComponent implements OnInit {
     this.getChefs();
     this.getFoodTypes();
     this.getKitchen();
+    this.loadNoteSuggests();
 
   }
   @Input() form_type: any;
@@ -29,10 +30,12 @@ export class CommonDialogComponent implements OnInit {
   foodMasterSelectForm: FormGroup;
   subFoods: any;
 
+  notesuggests: any;
+  note: string;
+
+
   ngOnInit() {
     if (this.form_type.form == 'parentalfood' || this.form_type.form == 'addnote') { this.saveButtonEnable = "hidden" }
-
-
 
     console.log(this.form_type.form);
     // initialize kitchen form
@@ -63,6 +66,7 @@ export class CommonDialogComponent implements OnInit {
       this.getFoodById(this.form_type.id);
     }
     this.getSubFood();
+
   }
   async getChefs() {
     const c = await this.dataService.getChefs().then(chefs => this.chefs = chefs);
@@ -102,7 +106,6 @@ export class CommonDialogComponent implements OnInit {
     });
   }
 
-
   updateFood() {
     if (this.FoodInfo.valid) {
       let food = this.FoodInfo.value;
@@ -134,4 +137,14 @@ export class CommonDialogComponent implements OnInit {
     }
     this.activeModal.close(data);
   }
+  async loadNoteSuggests() {
+    let c = await this.dataService.noteSuggests().then(res => {
+      this.notesuggests = res;
+
+    });
+  }
+  async noteselected(value) {
+    this.note = value
+  }
+
 }

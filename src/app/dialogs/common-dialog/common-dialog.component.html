@@ -83,18 +83,23 @@
 
     <div *ngSwitchCase="'addnote'">
       <div class="form-group">
-        <label for="addnotetxt">ຄຳສັ່ງພິເສດ</label>
+        <label for="addnotetxt">ຄຳສັ່ງເພີ່ມເຕີມ</label>
         <div class="row">
           <div class="col col-md-12">
-            <input type="text" class="form-control" required placeholder="ຄຳສັ່ງພິເສດ ..." (keyup.enter)="addNote($event.target)">
+            <input type="text" [(ngModel)]="note" class="form-control" required placeholder="ຄຳສັ່ງເພີ່ມເຕີມ ..."
+              (keyup.enter)="addNote($event.target)">
           </div>
-
+          <div class="col col-md-12">
+            <label for="noteHist">ໂນດທີ່ຜ່ານມາ</label>
+            <select class="form-control" id="noteHist" (change)="noteselected($event.target.value)">
+              <option>------</option>
+              <option value="{{ note.notes }}" *ngFor="let note of notesuggests">{{ note.notes }}</option>
+            </select>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
-
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-outline-dark" [ngClass]="saveButtonEnable" (click)="updateFood()">ບັນທຶກ</button>
