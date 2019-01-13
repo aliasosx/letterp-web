@@ -10,3 +10,10 @@
 .hidden {
   display: none;
 }
+.alert {
+  margin-top: 5px;
+}
+.btn-end {
+margin-left: 10px;
+width: 200px;
+}

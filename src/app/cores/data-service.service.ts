@@ -339,4 +339,12 @@ export class DataServiceService {
       });
     });
   }
+  eod(id, data): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.put(this.url + 'eod/' + id, data, this.httpOptions).subscribe(res => {
+        console.log(res);
+        resolve(res);
+      });
+    });
+  }
 }

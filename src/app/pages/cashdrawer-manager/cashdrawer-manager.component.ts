@@ -18,6 +18,7 @@ export class CashdrawerManagerComponent implements OnInit {
     if (!token) { route.navigateByUrl('/') }
     this.getUserInfo();
   }
+  cashEodID: number;
   token = localStorage.getItem('abcd');
   cashloadForm: FormGroup;
   btnDisabled = false;
@@ -29,15 +30,24 @@ export class CashdrawerManagerComponent implements OnInit {
   approvedUserName: string;
   usersSelectDisabled = true;
   btnApproveDisabled = true;
+  startAmount: number;
   showLoadBox = '';
-
-
+  settlementAmount: number;
+  alertless = 'hidden';
+  alertover = 'hidden';
+  savebtn = true;
+  usersAuthSelectDisabled = true;
+  authUserId: number;
+  authUserName: string;
+  btnAuthApproveDisabled = true;
   ngOnInit() {
     this.cashloadForm = new FormGroup({
       'startamount': new FormControl(),
       'settleAmount': new FormControl(),
       'balance': new FormControl(),
       'currentAmount': new FormControl(),
+      'previousBal': new FormControl(),
+      'note': new FormControl()
     });
     this.btnDisabled = false;
     //this.getUserInfo();
@@ -51,7 +61,6 @@ export class CashdrawerManagerComponent implements OnInit {
       this.usersSelectDisabled = true;
     }
   }
-
   async processLoadCash() {
     this.btnDisabled = false;
     this.start_amount_disabled = true;
@@ -74,6 +83,9 @@ export class CashdrawerManagerComponent implements OnInit {
         this.showLoadBox = '';
         return;
       } else {
+        this.startAmount = parseInt(res[0].startamount);
+        this.cashloadForm.get('previousBal').setValue(this.startAmount);
+        this.cashEodID = parseInt(res[0].id);
         this.btnDisabled = false;
         this.start_amount_disabled = true;
         this.showBox = '';
@@ -93,11 +105,30 @@ export class CashdrawerManagerComponent implements OnInit {
       if (res['status'] == 'success') {
         alert('Cash loaded');
         this.showLoadBox = 'hidden';
+        this.checkCurrentStatus();
       } else {
         alert(res);
       }
     });
   }
+  async eodSave() {
+    let data = {
+      saleamount: this.settlementAmount,
+      closeamount: this.cashloadForm.get('currentAmount').value,
+      balance: this.cashloadForm.get('balance').value,
+      closecheckerId: this.authUserId,
+      note: this.cashloadForm.get('note').value,
+    }
+    console.log(data);
+    this.dataService.eod(this.cashEodID, data).then((res) => {
+      alert(res['status']);
+      window.location.reload();
+    }).catch((err) => {
+      alert(err);
+      return;
+    })
+  }
+
   async getUsers() {
     const c = await this.dataService.getUsersException(this.userInfo['id']).then(users => {
       this.users = users;
@@ -112,23 +143,58 @@ export class CashdrawerManagerComponent implements OnInit {
     const modalRef = this.modalService.open(PasswordinputComponent, {
       centered: true
     });
-
     modalRef.componentInstance.username = this.approvedUserName;
     modalRef.result.then((data) => {
       if (data.status == 'success') {
         this.btnDisabled = true;
+        this.btnApproveDisabled = true;
       }
     });
   }
   async settle() {
     const s = await this.dataService.settlement(this.userInfo['id']).then(res => {
-      //this.settleAmount = res['total'];
-      this.cashloadForm.get('settleAmount').setValue(res[0].total);
-
+      if (res[0].total > 0) {
+        this.cashloadForm.get('settleAmount').setValue(res[0].total);
+        this.settlementAmount = parseInt(res[0].total);
+      } else {
+        alert('No transactions has been made yet');
+        return;
+      }
     });
   }
   remainingCashInDrawer(value) {
-    const balance = (value - (this.cashloadForm.get('startamount').value + this.cashloadForm.get('settleAmount').value));
+    const totalMoneyInput = this.startAmount + this.settlementAmount;
+    const balance = (parseInt(value) - totalMoneyInput);
     this.cashloadForm.get('balance').setValue(balance);
+    if (balance < 0) {
+      this.alertless = '';
+      this.alertover = 'hidden';
+      this.savebtn = true;
+    } else if (balance > 0) {
+      this.alertless = 'hidden';
+      this.alertover = '';
+      this.savebtn = true;
+    } else if (balance == 0) {
+      this.alertless = 'hidden';
+      this.alertover = 'hidden';
+      this.usersAuthSelectDisabled = false;
+    }
+  }
+
+  usersAuthSelectChange(u) {
+    this.authUserId = u.target.value;
+    this.authUserName = u.target.options[u.target.selectedIndex].text;
+    this.btnAuthApproveDisabled = false;
+  }
+  async authUser() {
+    const modalRef = this.modalService.open(PasswordinputComponent, {
+      centered: true
+    });
+    modalRef.componentInstance.username = this.authUserName;
+    modalRef.result.then((data) => {
+      if (data.status == 'success') {
+        this.savebtn = false;
+      }
+    });
   }
 }

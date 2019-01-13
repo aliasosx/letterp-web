@@ -1,4 +1,12 @@
 <div class="container">
+  <div class="alert alert-danger text-center" [ngClass]="alertless" role="alert">
+    ຍອດເງິນບໍ່ພຽງພໍ ກະລຸນາກວດສອບໃໝ່
+  </div>
+
+  <div class="alert alert-warning text-center" [ngClass]="alertover" role="alert">
+    ຍອດເງິນບໍເກິນ ກະລຸນາກວດສອບໃໝ່
+  </div>
+
   <form [formGroup]="cashloadForm">
     <div class="card" [ngClass]="showLoadBox">
       <div class="card-header bg-dark">
@@ -26,7 +34,7 @@
             </select>
           </div>
           <div class="col-sm-3">
-            <button type="button" (click)="approveUser()" [disabled]="btnApproveDisabled " class="btn btn-warning">Approved</button>
+            <button type="button" (click)="approveUser()" [disabled]="btnApproveDisabled " class="btn btn-warning">ອະນຸມັດ</button>
           </div>
         </div>
 
@@ -34,6 +42,13 @@
     </div>
     <div class="card" [ngClass]="showBox">
       <div class="card-body">
+        <div class="form-group row">
+          <label for="previousBal" class="col-sm-3 col-form-label">ຍອດຍົກມາ</label>
+          <div class="col-sm-6">
+            <input type="number" readonly class="form-control" id="previousBal" formControlName="previousBal">
+          </div>
+
+        </div>
         <div class="form-group row">
           <label for="saleTotalAmount" class="col-sm-3 col-form-label">ຍອດຂາຍລ່າສຸດ</label>
           <div class="col-sm-6">
@@ -52,17 +67,40 @@
           </div>
         </div>
         <div class="form-group row">
-          <label for="netAmount" class="col-sm-3 col-form-label">ຍອດເງິນຫຼັງປິດການຂາຍຂອງວັນ</label>
+          <label for="balance" class="col-sm-3 col-form-label">ຍອດເງິນຫຼັງປິດການຂາຍຂອງວັນ</label>
           <div class="col-sm-6">
             <input type="number" readonly class="form-control" id="netAmount" step="10000" formControlName="balance">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="note" class="col-sm-3 col-form-label">ໝາຍເຫດ</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="note" maxlength="255" formControlName="note">
+          </div>
+        </div>
+
+
+        <div class="form-group row">
+          <label for="userselect" class="col-sm-3 col-form-label">ຜູ້ກວດສອບອະນຸມັດ</label>
+          <div class="col-sm-6">
+            <select class="form-control" id="usersAuthSelect" [disabled]="usersAuthSelectDisabled" (change)="usersAuthSelectChange($event)">
+              <option disabled value="">---------------------</option>
+              <option value="{{ user.id }}" *ngFor="let user of users">{{ user.username |uppercase }}</option>
+            </select>
+          </div>
+          <div class="col-sm-3">
+            <button type="button" (click)="authUser()" [disabled]="btnAuthApproveDisabled" class="btn btn-warning">Approved</button>
           </div>
         </div>
         <div class="form-group row">
           <div class="col-sm-3">
           </div>
           <div class="col-sm-6">
-            <button type="button" class="btn btn-lg btn-primary">ບັນທຶກເງິນສົດ</button>
+            <div class="row">
+              <button type="button" [disabled]="savebtn" class="btn btn-lg btn-primary btn-end" (click)="eodSave()">ບັນທຶກເງິນສົດ</button>
+            </div>
           </div>
+
         </div>
       </div>
     </div>

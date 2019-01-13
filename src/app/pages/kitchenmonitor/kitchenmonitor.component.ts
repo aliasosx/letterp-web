@@ -18,7 +18,6 @@ export class KitchenmonitorComponent implements OnInit {
     let token = localStorage.getItem('abcd');
     if (!token) { route.navigateByUrl('/') }
     this.getUserInfo();
-
     setInterval(() => {
       this.getKitchenMon();
     }, 3000);
@@ -33,7 +32,6 @@ export class KitchenmonitorComponent implements OnInit {
   hightLightColor = "bg-dark";
 
   ngOnInit() {
-    //this.hightLightColor: "bg-dark";
     this.getKitchenMon();
 
   }
@@ -56,14 +54,9 @@ export class KitchenmonitorComponent implements OnInit {
       this.orders.push(data);
     }
     );
-
-
     this.order_tracks = {
       'order': this.orders
     };
-    //console.log(this.order_tracks);
-
-
   }
   getTimeOrderRemaing(orderTime) {
     let startTime = new Date(orderTime);
