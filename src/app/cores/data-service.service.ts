@@ -354,4 +354,18 @@ export class DataServiceService {
       });
     });
   }
+  getOrderAllForAdmin(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.url + 'orderByday', this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
+  undoFinishedOrder(id, data): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.put(this.url + 'reverseOrder/' + id, data, this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
 }

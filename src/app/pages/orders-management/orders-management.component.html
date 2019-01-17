@@ -1,0 +1,31 @@
+<div class="card main-card">
+  <div class="card-header">
+    ຈັດການ Orders
+  </div>
+  <div class="card-body">
+    <div class="maintable">
+      <table class="table table-striped table-dark">
+        <thead>
+          <tr>
+            <th scope="col">Ticket</th>
+            <th scope="col">ເວລາສັ່ງ</th>
+            <th scope="col">Status</th>
+            <th scope="col">Order by</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of orders_ongoing">
+            <th scope="row">{{ item.tick_number }}</th>
+            <td>{{ item.order_datetime | date:'HH:mm:ss'}}</td>
+            <td>{{ item.status }}</td>
+            <td>{{ item.username }}</td>
+            <td>
+              <button class="btn btn-info cmd-btn">Order detail</button>
+              <button class="btn btn-warning cmd-btn" (click)="undoFinishOrder(item.id)">Undo finish</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,3 +1,4 @@
+import { OrdersManagementComponent } from './pages/orders-management/orders-management.component';
 import { OrdermonitorComponent } from './pages/ordermonitor/ordermonitor.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'kitchenmon', component: KitchenmonitorComponent },
   { path: 'adminreport', component: ReportsComponent },
   { path: 'cashmanager', component: CashdrawerManagerComponent },
-  { path: 'report', component: KitchenReportsComponent }
+  { path: 'report', component: KitchenReportsComponent },
+  { path: 'ordermanagement', component: OrdersManagementComponent },
 ];
 
 @NgModule({

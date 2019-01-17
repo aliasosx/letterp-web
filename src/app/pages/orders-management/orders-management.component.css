@@ -1,0 +1,13 @@
+* {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif, 'phetsarath ot';
+}
+.main-card {
+margin-top: 5px;
+}
+.card-header {
+  background-color: black;
+  color: white;
+}
+.cmd-btn {
+margin-left: 5px;
+}
