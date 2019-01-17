@@ -20,7 +20,7 @@
             <td>{{ item.status }}</td>
             <td>{{ item.username }}</td>
             <td>
-              <button class="btn btn-info cmd-btn">Order detail</button>
+              <button class="btn btn-info cmd-btn" (click)="openOrderDetail(item)">Order detail</button>
               <button class="btn btn-warning cmd-btn" (click)="undoFinishOrder(item.id)">Undo finish</button>
             </td>
           </tr>
