@@ -27,6 +27,7 @@ import { KitchenReportsComponent } from './pages/kitchen-reports/kitchen-reports
 import { PasswordinputComponent } from './dialogs/passwordinput/passwordinput.component';
 import { OrdersManagementComponent } from './pages/orders-management/orders-management.component';
 import { ConfirmationComponent } from './dialogs/confirmation/confirmation.component';
+import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { ConfirmationComponent } from './dialogs/confirmation/confirmation.compo
     PasswordinputComponent,
     OrdersManagementComponent,
     ConfirmationComponent,
+    AdminDashboardComponent,
 
   ],
   imports: [

@@ -1,0 +1,8 @@
+* {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, 'phetsarath ot';
+}
+.card-header{
+  background-color: black;
+  color: white;
+  z-index: 50px;
+}

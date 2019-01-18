@@ -1,3 +1,4 @@
+import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 import { OrdersManagementComponent } from './pages/orders-management/orders-management.component';
 import { OrdermonitorComponent } from './pages/ordermonitor/ordermonitor.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'cashmanager', component: CashdrawerManagerComponent },
   { path: 'report', component: KitchenReportsComponent },
   { path: 'ordermanagement', component: OrdersManagementComponent },
+  { path: 'admindashboard', component: AdminDashboardComponent },
 ];
 
 @NgModule({

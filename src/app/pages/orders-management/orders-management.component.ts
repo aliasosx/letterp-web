@@ -14,6 +14,7 @@ export class OrdersManagementComponent implements OnInit {
     this.orderTracking();
   }
   orders_ongoing: any;
+  tableBg = "";
   ngOnInit() {
 
   }

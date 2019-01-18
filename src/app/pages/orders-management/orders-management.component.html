@@ -15,9 +15,15 @@
         </thead>
         <tbody>
           <tr *ngFor="let item of orders_ongoing">
-            <th scope="row">{{ item.tick_number }}</th>
+            <th scope="row text-center">{{ item.tick_number }}</th>
             <td>{{ item.order_datetime | date:'HH:mm:ss'}}</td>
-            <td>{{ item.status }}</td>
+            <td>
+              <h3><span class="badge badge-success" *ngIf="item.status == 'finished' ; else cancel_order">{{
+                  item.status }}</span></h3>
+              <ng-template #cancel_order>
+                <h3><span class="badge badge-warning">{{ item.status }}</span></h3>
+              </ng-template>
+            </td>
             <td>{{ item.username }}</td>
             <td>
               <button class="btn btn-info cmd-btn" (click)="openOrderDetail(item)">Order detail</button>
