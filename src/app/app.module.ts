@@ -26,6 +26,7 @@ import { CashdrawerManagerComponent } from './pages/cashdrawer-manager/cashdrawe
 import { KitchenReportsComponent } from './pages/kitchen-reports/kitchen-reports.component';
 import { PasswordinputComponent } from './dialogs/passwordinput/passwordinput.component';
 import { OrdersManagementComponent } from './pages/orders-management/orders-management.component';
+import { ConfirmationComponent } from './dialogs/confirmation/confirmation.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { OrdersManagementComponent } from './pages/orders-management/orders-mana
     KitchenReportsComponent,
     PasswordinputComponent,
     OrdersManagementComponent,
+    ConfirmationComponent,
 
   ],
   imports: [
@@ -69,6 +71,7 @@ import { OrdersManagementComponent } from './pages/orders-management/orders-mana
     TransactionDetailsComponent,
     FirstLoginComponent,
     PasswordinputComponent,
+    ConfirmationComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

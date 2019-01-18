@@ -1,3 +1,4 @@
+import { ConfirmationComponent } from './../../dialogs/confirmation/confirmation.component';
 import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from 'src/app/cores/auth-service.service';
 import { DataServiceService } from 'src/app/cores/data-service.service';
@@ -33,34 +34,53 @@ export class OrdermonitorComponent implements OnInit {
     });
   }
   async completeOrder(id, ticketId) {
-    let ops = {
-      'statusId': 2,
-      'finish_datetime': Date.now(),
-      'ticketId': ticketId
-    }
-    const o = await this.dataService.updateOrderStatus(id, ops).then((res) => {
-      if (res['status'] == 'success') {
-        this.getOrderTracking();
+    const modalRef = this.modalService.open(ConfirmationComponent, {
+      centered: true
+    });
+
+    modalRef.componentInstance.message = 'ສົ່ງ';
+    modalRef.result.then(async (res) => {
+      if (res == 'ok') {
+        let ops = {
+          'statusId': 2,
+          'finish_datetime': Date.now(),
+          'ticketId': ticketId
+        }
+        const o = await this.dataService.updateOrderStatus(id, ops).then((res) => {
+          if (res['status'] == 'success') {
+            this.getOrderTracking();
+          } else {
+            return;
+          }
+        });
       } else {
-        return;
+        return
       }
     });
   }
 
   async cancelOrder(id, ticketId) {
+    const modalRef = this.modalService.open(ConfirmationComponent, {
+      centered: true
+    });
+    modalRef.componentInstance.message = 'ຍົກເລີກ';
+    modalRef.result.then(async (res) => {
+      if (res == 'ok') {
+        let ops = {
+          'statusId': 4,
+          'finish_datetime': Date.now(),
+          'ticketId': ticketId
+        }
 
-    let ops = {
-      'statusId': 4,
-      'finish_datetime': Date.now(),
-      'ticketId': ticketId
-    }
-    //    console.log(ops);
-
-    const o = await this.dataService.updateOrderStatus(id, ops).then((res) => {
-      if (res['status'] == 'success') {
-        this.getOrderTracking();
+        const o = await this.dataService.updateOrderStatus(id, ops).then((res) => {
+          if (res['status'] == 'success') {
+            this.getOrderTracking();
+          } else {
+            return;
+          }
+        });
       } else {
-        return;
+        return
       }
     });
   }

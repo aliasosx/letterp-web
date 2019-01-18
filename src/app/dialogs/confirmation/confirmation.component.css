@@ -1,0 +1,14 @@
+* {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, 'phetsarath ot';
+}
+
+.card-header {
+  background-color: rgb(194, 12, 12);
+  color: white;
+}
+.hidden {
+  display: none;
+}
+.btnCommand {
+  margin-left: 10px;
+}
