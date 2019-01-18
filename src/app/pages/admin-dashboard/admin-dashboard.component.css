@@ -6,3 +6,9 @@
   color: white;
   z-index: 50px;
 }
+.time-div {
+  min-height: 50px;
+}
+.btn {
+  margin-left: 5px;
+}

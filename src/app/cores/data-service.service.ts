@@ -368,4 +368,33 @@ export class DataServiceService {
       });
     });
   }
+  // Chart
+  getSaleVolumeAll(data): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.url + 'sale_volume', data, this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
+  getSaleByFood(data): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.url + 'sale_by_food', data, this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
+  getSaleByUsers(data): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.url + 'sale_by_users', data, this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
+  getSaleByDay(data): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.url + 'sale_by_day', data, this.httpOptions).subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
 }

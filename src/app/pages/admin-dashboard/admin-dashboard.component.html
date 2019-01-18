@@ -1,15 +1,100 @@
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <form class="form-inline">
+        <div class="form-group">
+          <div class="input-group">
+            <input class="form-control time-div" placeholder="yyyy-mm-dd" name="dpst" [(ngModel)]="StartDatepickerModel"
+              ngbDatepicker #st="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary btn-lg" (click)="st.toggle()" type="button">
+                <img src="../../../assets/images/calendar.svg">
+              </button>
+            </div>
+
+
+            <input class="form-control time-div" placeholder="yyyy-mm-dd" name="dpend" [(ngModel)]="EndDatepickerModel"
+              ngbDatepicker #end="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary btn-lg" (click)="end.toggle()" type="button">
+                <img src="../../../assets/images/calendar.svg">
+              </button>
+            </div>
+
+          </div>
+          <div class="input-group kitchen-div">
+            <button type="button" class="btn btn-lg btn-primary" (click)="processReport()">Report</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
 <div class="row">
-  <div class="col col-md-2">
+  <div class="col col-md-4">
+    <div class="card">
+      <div class="card-header">
+        Transaction volume by Type
+      </div>
+      <div class="card-body">
+        <div>
+          <canvas id="canvasByType"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col col-md-4">
     <div class="card">
       <div class="card-header">
         Transaction volume
       </div>
       <div class="card-body">
-
-      </div>
-      <div class="card-footer">
-
+        <div>
+          <canvas id="canvasByVol"></canvas>
+        </div>
       </div>
     </div>
   </div>
+  <div class="col col-md-4">
+    <div class="card">
+      <div class="card-header">
+        Transaction By Food
+      </div>
+      <div class="card-body">
+        <div>
+          <canvas id="canvasByUser"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col col-md-4">
+    <div class="card">
+      <div class="card-header">
+        Volume by day
+      </div>
+      <div class="card-body">
+        <div>
+          <canvas id="canvasByDay"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col col-md-8">
+    <div class="card">
+      <div class="card-header">
+        Volume by day
+      </div>
+      <div class="card-body">
+        <div>
+          <canvas id="canvasByFood"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
