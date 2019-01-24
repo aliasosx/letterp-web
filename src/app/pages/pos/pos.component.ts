@@ -6,6 +6,7 @@ import { DataServiceService } from 'src/app/cores/data-service.service';
 import { Item } from 'src/app/models/Item';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PaymentConfirmComponent } from 'src/app/payments/payment-confirm/payment-confirm.component';
+import { QrPaymentComponent } from 'src/app/dialogs/qr-payment/qr-payment.component';
 
 @Component({
   selector: 'app-pos',
@@ -233,6 +234,7 @@ export class PosComponent implements OnInit {
     localStorage.setItem('cart', JSON.stringify(cart));
     this.loadCart();
   }
+  // Cash payment
   openPaymentForm() {
     const modalRef = this.modalService.open(PaymentConfirmComponent, {
       centered: true,
@@ -252,6 +254,36 @@ export class PosComponent implements OnInit {
       console.log(err);
     }
   }
+
+  // QR payment
+
+  openQRCodePayment() {
+    const modalRef = this.modalService.open(QrPaymentComponent, {
+      centered: true,
+      size: 'lg'
+    });
+    modalRef.componentInstance.data = { 'grandtotal': this.grandTotal, 'user': this.userInfo }
+
+    modalRef.result.then((res) => {
+      console.log(res);
+    });
+    /*
+    try {
+      modalRef.result.then((res) => {
+        if (res === 'success') {
+          localStorage.removeItem('cart');
+          this.loadCart();
+          this.checkPayment();
+        } else {
+          return;
+        }
+      })
+    } catch (err) {
+      console.log(err);
+    }
+    */
+  }
+
   getPhoto(f) {
     console.log(f);
     return this.dataService.getFoodPhoto(f);

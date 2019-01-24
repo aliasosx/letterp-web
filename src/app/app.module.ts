@@ -28,6 +28,7 @@ import { PasswordinputComponent } from './dialogs/passwordinput/passwordinput.co
 import { OrdersManagementComponent } from './pages/orders-management/orders-management.component';
 import { ConfirmationComponent } from './dialogs/confirmation/confirmation.component';
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
+import { QrPaymentComponent } from './dialogs/qr-payment/qr-payment.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard
     OrdersManagementComponent,
     ConfirmationComponent,
     AdminDashboardComponent,
+    QrPaymentComponent,
 
   ],
   imports: [
@@ -74,6 +76,7 @@ import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard
     FirstLoginComponent,
     PasswordinputComponent,
     ConfirmationComponent,
+    QrPaymentComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

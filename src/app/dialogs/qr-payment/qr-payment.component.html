@@ -1,0 +1,63 @@
+<div class="card">
+  <div class="card-header">
+    QR Payment On BCEL
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col col-sm-12 col-md-4">
+        <div class="row">
+          <div class="col text-center">
+            <p>
+              Please scan below for Payment
+            </p>
+          </div>
+
+          <div class="col col-md-12">
+            <div class="qr-frame">
+              <iframe [src]="urlSafe" style="width:210px;height: 230px;overflow: none;" frameborder="0" id="iframeQr"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col col-sm-12 col-md-8">
+        <div class="card tick-card">
+          <div class="card-body">
+            <div class="form-group row">
+              <label for="ticketSelect" class="col-sm-2 col-form-label">Ticket</label>
+              <div class="col-sm-12">
+                <select id="ticketSelect" required class="form-control" (change)="ticketIdChange($event.target.value, $event)">
+                  <option value="-1" disabled>------</option>
+                  <option value="{{ ticket.id }}" *ngFor="let ticket of tickets">{{ ticket.tick_number }}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <label for="refnotxt" class="col-sm-2 col-form-label">refno</label>
+                <input type="text" class="form-control" id="refnotxt">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <div class="row ">
+              <div class="h3 col col-sm-12 col-md-12 text-center">ລວມຄ່າອາຫານທັງໝົດ</div>
+            </div>
+            <div class="row text-center">
+              <div class="display-3 col-sm-12 col-md-12">{{ data.grandtotal | number }} ກິບ</div>
+            </div>
+            <div class="row">
+              <div class="col col-sm-12 col-md-12">
+                <button type="button" class="btn btn-lg btn-warning custom-btn" (click)="payment_other()">Pay it</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+
+  </div>
+</div>

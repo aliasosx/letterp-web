@@ -83,7 +83,6 @@ export class PaymentConfirmComponent implements OnInit {
     const t = await this.dataService.getAliveTickets().then((tickets) => this.tickets = tickets);
   }
   payment() {
-
     this.paymentProcess = true;
     let order = {
       "grandtotal": this.data.grandtotal,
@@ -91,9 +90,11 @@ export class PaymentConfirmComponent implements OnInit {
       "statusId": 1,
       "userId": this.data.user['id'],
       "orderdetail": this.orderDetail,
-      "customerId": this.customer,
+      "customerId": 1,//this.customer,
       "received": this.received,
-      "change": this.change
+      "change": this.change,
+      "paymenttypeId": 1,
+      "bankId": 'cash'
     }
     console.log(this.data.grandtotal + ' - ' + this.received + '-' + this.change);
     if (order) {
@@ -108,7 +109,7 @@ export class PaymentConfirmComponent implements OnInit {
     }
   }
   paymentCheck() {
-    if (!this.ticket || !this.customer) {
+    if (!this.ticket) {
       this.paymentProcess = true;
     } else {
       this.paymentProcess = false;
@@ -125,7 +126,7 @@ export class PaymentConfirmComponent implements OnInit {
       let printData = {
         "staff": this.data.user['fullname'],
         "ticket": this.ticket_number,
-        "terminal": "01",
+        "terminal": "01 - Cash",
         "items": this.items_Print,
         "grandTotal": this.data.grandtotal,
         "recieved": this.received,

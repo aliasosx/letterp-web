@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   url: 'http://localhost:5000/',
   photoPath: 'http://localhost:5005/',
-  printerUrl: 'http://localhost:8000/'
+  printerUrl: 'http://localhost:8000/',
+  QPayUrl: 'http://192.168.10.186/',
 };
 
 /*
